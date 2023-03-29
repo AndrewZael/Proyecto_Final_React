@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Icon = ({ icon }) => {
+const Icon = ({ icon, color = 'primary', size = 24 }) => {
   return (
-    <span class="material-icons-outlined align-middle">{ icon }</span>
+    <span className={`material-icons-outlined align-middle text-${color}`} style={{ fontSize: `${size}px` }}>
+      { icon }
+    </span>
   )
 }
 
