@@ -1,6 +1,8 @@
 import './assets/css/custom.css';
+import './assets/css/style.scss';
 import Header from './components/Header';
 import { BrowserRouter, Routes, Route  } from 'react-router-dom';
+import Card from './components/Card';
 
 function App() {
   return (

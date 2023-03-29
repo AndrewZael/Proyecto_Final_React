@@ -1,0 +1,27 @@
+$primary-rgba: rgb(42 69 161 / .3);
+
+.border-soft{ border-color: $primary-rgba!important; }
+.custom-shadow{ box-shadow: 0 0 2px rgb(0 0 0 / .25); }
+
+/*CARD*/
+.header-home-card{
+    left: -40px;
+    bottom: -5px;
+}
+.photo-user-card{
+    width: 80px;
+    height: 80px;
+    top: -40px;
+    flex: 0 0 80px;
+}
+.info-card{
+    z-index: 1;
+}
+.decoration-card{
+    height: 300px;
+    width: 150%;
+    z-index: 0;
+    bottom: -20%;
+    left: -27%;
+}
+/*CARD*/
