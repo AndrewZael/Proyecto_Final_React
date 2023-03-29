@@ -5,7 +5,7 @@ import linkedin from '../assets/img/linkedin.svg';
 
 const Footer = () => {
   return (
-    <footer className='bg-primary px-3 py-4 mt-5'>
+    <footer className='bg-primary px-3 py-4'>
        <div className='row'>
             <div className='col-6 d-flex gap-3'>
                 <div>

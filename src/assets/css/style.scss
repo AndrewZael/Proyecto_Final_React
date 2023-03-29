@@ -1,4 +1,18 @@
 $primary-rgba: rgb(42 69 161 / .3);
+$oscure:#252525;
+$gray-dark:#404040;
+$gray: #808080;
+$gray-light:#bfbfbf;
+$gray-x-light:#e0e0e0;
+$gray-xx-light:#f3f3f3;
+
+/*PLACEHOLDER*/
+::placeholder { color: $gray!important; }
+  
+:-ms-input-placeholder { color: $gray!important; }
+
+::-ms-input-placeholder { color: $gray!important; }
+/*PLACEHOLDER*/
 
 .border-soft{ border-color: $primary-rgba!important; }
 .custom-shadow{ box-shadow: 0 0 2px rgb(0 0 0 / .25); }
@@ -26,6 +40,9 @@ $primary-rgba: rgb(42 69 161 / .3);
 }
 /*CARD*/
 
-/*FOOTER*/
-
-/*FOOTER*/
+/*FILTERS*/
+#filters{
+    background-color: $gray-xx-light;
+    border-right: 1px solid $gray-x-light;
+}
+/*FILTERS*/

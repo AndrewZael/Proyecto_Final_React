@@ -5,7 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 const Header = () => {
   return (
-    <header className='row mx-0 justify-content-between align-items-center bg-secondary'>
+    <header className='row mx-0 justify-content-between align-items-center bg-secondary border-bottom border-auxiliar position-sticky top-0 start-0'>
       <nav className='col-6'>
         <ul className='p-0 m-0 list-unstyled d-flex'>
             <li className='me-3 d-flex align-items-center'>
