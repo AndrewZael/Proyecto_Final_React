@@ -2,10 +2,21 @@ import React from 'react';
 import { NavLink } from 'react-router-dom'
 import ItemMenu from './ItemMenu';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const Header = () => {
+
+  const [head, setHead] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      window.scrollY >= 65 ? setHead(true) : setHead(false);
+    });
+  });
+
   return (
-    <header className='row mx-0 justify-content-between align-items-center bg-secondary border-bottom border-auxiliar position-sticky top-0 start-0'>
+    <header className={`main-header row mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 ${head && 'bg-secondary border-bottom'}`}>
       <nav className='col-6'>
         <ul className='p-0 m-0 list-unstyled d-flex'>
             <li className='me-3 d-flex align-items-center'>
@@ -17,6 +28,10 @@ const Header = () => {
             </li>
             <li><NavLink to='/publicaciones' className='text-decoration-none text-light py-4 d-inline-block small'>
                 PUBLICACIONES
+                </NavLink>
+            </li>
+            <li><NavLink to='/detail/1' className='text-decoration-none text-light py-4 d-inline-block small ms-3'>
+                DETALLE
                 </NavLink>
             </li>
         </ul>

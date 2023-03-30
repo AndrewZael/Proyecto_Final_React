@@ -6,7 +6,7 @@ import linkedin from '../assets/img/linkedin.svg';
 const Footer = () => {
   return (
     <footer className='bg-primary px-3 py-4'>
-       <div className='row'>
+       <div className='row mx-0'>
             <div className='col-6 d-flex gap-3'>
                 <div>
                     <span className='bg-light rounded-circle p-5 d-inline-block'>
@@ -17,7 +17,6 @@ const Footer = () => {
                     <ul className='text-light'>
                         <li><a className='text-light text-decoration-none small'>HOME</a></li>
                         <li><a className='text-light text-decoration-none small'>PUBLICACIONES</a></li>
-                        <li><a className='text-light text-decoration-none small'>SUSCRÍBETE</a></li>
                     </ul>
                 </nav>
                 <nav>

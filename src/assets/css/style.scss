@@ -17,6 +17,27 @@ $gray-xx-light:#f3f3f3;
 .border-soft{ border-color: $primary-rgba!important; }
 .custom-shadow{ box-shadow: 0 0 2px rgb(0 0 0 / .25); }
 
+/*HEADER*/
+.main-header{
+    z-index: 2;
+}
+/*HEADER*/
+
+/*VIDEO*/
+.video{
+    top: -58%;
+}
+.video{
+    div{
+        height: 120vh;
+        video{
+            object-fit: cover;
+            height: 120vh;
+        }
+    }
+}
+/*VIDEO*/
+
 /*CARD*/
 .header-home-card{
     left: -40px;
@@ -35,7 +56,7 @@ $gray-xx-light:#f3f3f3;
     height: 100%;
     width: 150%;
     z-index: 0;
-    bottom: -27%;
+    bottom: -28%;
     left: -27%;
 }
 /*CARD*/
@@ -46,3 +67,32 @@ $gray-xx-light:#f3f3f3;
     border-right: 1px solid $gray-x-light;
 }
 /*FILTERS*/
+
+/*UTILITIES*/
+.link{ 
+    color: var(--bs-auxiliar); 
+}
+.link{
+    &:active{
+        color: var(--bs-danger);
+    }
+}
+.link{
+    &:visited{
+        color: var(--bs-purple);
+    }
+}
+.link{
+    &:focus{
+        outline: 1px dotted var(--bs-primary);
+    }
+}
+.link{
+    &:hover{
+        text-decoration: underline;
+    }
+}
+.text-xxl{
+    font-size: 4.206rem;
+}
+/*UTILITIES*/
