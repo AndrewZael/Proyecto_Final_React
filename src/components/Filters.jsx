@@ -1,10 +1,10 @@
 import React from 'react';
 import Icon from './Icon';
 
-const Filters = () => {
+const Filters = ({ styles }) => {
   return (
-    <section id='filters'>
-       <form className='px-3 py-4'>
+    <section id='filters' className={styles}>
+       <form className='px-3 py-4 position-sticky'>
             <label htmlFor='search' className='mb-1 small'>Buscar</label>
             <div className="input-group mb-3">
                 <div className="input-group-prepend border-start border-top border-bottom rounded-start p-2 bg-white">
@@ -27,9 +27,15 @@ const Filters = () => {
                 <ul className='list-unstyled mt-1'>
                     <li className='mb-1'>
                         <input id='pais-1' type='checkbox' />
-                        <label htmlFor='pais-1' className='ms-2 text-dark small'>
-                            Chile
-                        </label>
+                        <label htmlFor='pais-1' className='ms-2 text-dark small'>Chile</label>
+                    </li>
+                    <li className='mb-1'>
+                        <input id='pais-2' type='checkbox' />
+                        <label htmlFor='pais-2' className='ms-2 text-dark small'>Mexico</label>
+                    </li>
+                    <li className='mb-1'>
+                        <input id='pais-3' type='checkbox' />
+                        <label htmlFor='pais-3' className='ms-2 text-dark small'>Alemania</label>
                     </li>
                 </ul>
             </section>
@@ -38,10 +44,16 @@ const Filters = () => {
                 <b>Tags</b>
                 <ul className='list-unstyled mt-1'>
                     <li className='mb-1'>
-                        <input id='pais-1' type='checkbox' />
-                        <label htmlFor='pais-1' className='ms-2 text-dark small'>
-                            SEO
-                        </label>
+                        <input id='skill-1' type='checkbox' />
+                        <label htmlFor='skill-1' className='ms-2 text-dark small'>SEO</label>
+                    </li>
+                    <li className='mb-1'>
+                        <input id='skill-2' type='checkbox' />
+                        <label htmlFor='skill-2' className='ms-2 text-dark small'>SEM</label>
+                    </li>
+                    <li className='mb-1'>
+                        <input id='skill-3' type='checkbox' />
+                        <label htmlFor='skill-3' className='ms-2 text-dark small'>Google ADS</label>
                     </li>
                 </ul>
             </section>

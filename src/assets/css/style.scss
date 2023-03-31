@@ -65,10 +65,25 @@ $gray-xx-light:#f3f3f3;
 #filters{
     background-color: $gray-xx-light;
     border-right: 1px solid $gray-x-light;
+    form{
+        top: 5rem;
+    }
 }
 /*FILTERS*/
 
+/*SKILL*/
+.skill{
+    background-color: $gray-xx-light;
+    border: 1px solid $gray-x-light;
+}
+/*SKILL*/
+
 /*UTILITIES*/
+.bg{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .link{ 
     color: var(--bs-auxiliar); 
 }
@@ -92,7 +107,13 @@ $gray-xx-light:#f3f3f3;
         text-decoration: underline;
     }
 }
+.text-gray{
+    color: $gray;
+}
 .text-xxl{
     font-size: 4.206rem;
+}
+.invert{
+    filter: invert(1);
 }
 /*UTILITIES*/

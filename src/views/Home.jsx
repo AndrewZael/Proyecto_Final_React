@@ -4,6 +4,7 @@ import Card from '../components/Card';
 import CardInfo from '../components/CardInfo';
 import Login from '../components/Login';
 import Animation from '../components/Animation';
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -33,9 +34,12 @@ const Home = () => {
           <div className='col-12 col-sm-6 col-md-4 col-xl-3'>
             <Card home={true} />
           </div>
+          <footer className='text-center mt-5'>
+             <NavLink to='/publicaciones' className='btn btn-primary rounded-pill py-2 px-4'>VER TODAS</NavLink>
+          </footer>
         </section>
 
-        <section title='Beneficios' className='mb-5 py-5 mx-auto col-7 justify-content-around gap-4'>
+        <section title='Beneficios' className='mb-4 py-4 mx-auto col-7 justify-content-around gap-4'>
         <HeadSection title='Lorem ipsum dolor sit amet' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.' />
           <div className='row pt-5'>
             <div className='col-12 col-sm-6 mb-4 pb-5'>

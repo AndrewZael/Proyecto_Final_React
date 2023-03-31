@@ -9,7 +9,8 @@ const Footer = () => {
        <div className='row mx-0'>
             <div className='col-6 d-flex gap-3'>
                 <div>
-                    <span className='bg-light rounded-circle p-5 d-inline-block'>
+                    <span className='bg-light d-flex justify-content-center align-items-center rounded-circle d-inline-block' 
+                    style={{ width: '150px', height: '150px' }}>
                         LOGO
                     </span>
                 </div>

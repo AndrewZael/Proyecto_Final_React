@@ -4,7 +4,7 @@ import google from '../assets/img/google.svg';
 
 const Login = () => {
   return (
-    <section title='Login' className='p-3 rounded border bg-light'>
+    <section title='Login' className='p-3 rounded border bg-light position-relative w-100'>
         <header className='text-center mb-4'>
             <span className='p-4 bg-secondary rounded-circle d-inline-block'></span>
             <span className='fw-bold d-block'>Ingresa con tu cuenta</span>

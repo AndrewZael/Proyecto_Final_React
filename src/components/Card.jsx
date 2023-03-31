@@ -1,5 +1,8 @@
 import React from 'react';
-import Icon from './Icon';
+import { NavLink } from 'react-router-dom';
+import Value from './Value';
+import Fav from '../components/Fav';
+import Share from '../components/Share';
 
 const Card = ({ home = false }) => {
   return (
@@ -15,17 +18,11 @@ const Card = ({ home = false }) => {
             <div className='info-card p-3 rounded border border-soft position-relative bg-light'>
                 <header className='row align-items-center'>
                     <div className='col-6'>
-                        <data value='5.0' className='fw-bold h4 me-1'>5.0</data>
-                        <small className='me-1'>USD</small> 
-                        <b>hora</b>
+                        <Value val={5.3}  />
                     </div>
                     <div className='text-end col-6'>
-                        <button className='btn px-2 text-primary'>
-                            <Icon icon="favorite" />
-                        </button>
-                        <button className='btn px-2 text-primary'>
-                            <Icon icon="share" />
-                        </button>
+                        <Fav />
+                        <Share />
                     </div>
                 </header>
                 <div className='text-dark mt-4'>
@@ -34,9 +31,9 @@ const Card = ({ home = false }) => {
                 </div>
 
                 <footer className='d-flex justify-content-between gap-2 mt-4'>
-                    <button className='btn btn-sm btn-outline-primary rounded-pill w-100'>
+                    <NavLink to="/detalle/1" className='btn btn-sm btn-outline-primary rounded-pill w-100'>
                         MAS INFO
-                    </button>
+                    </NavLink>
                     <button className='btn btn-sm btn-primary rounded-pill w-100'>
                         CONTACTAR
                     </button>
