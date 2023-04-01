@@ -3,8 +3,13 @@ import { NavLink } from 'react-router-dom';
 import Value from './Value';
 import Fav from '../components/Fav';
 import Share from '../components/Share';
+import Context from '../contexts/Context';
+import { useContext } from 'react';
 
 const Card = ({ home = false }) => {
+  
+   const { setShowModalContact } =  useContext(Context); 
+
   return (
     <article className='custom-card text-primary rounded custom-shadow bg-light position-relative px-0'>
         <header className={`text-center ${home ? 'header-home-card d-flex position-relative' : ''}`}>
@@ -34,7 +39,7 @@ const Card = ({ home = false }) => {
                     <NavLink to="/detalle/1" className='btn btn-sm btn-outline-primary rounded-pill w-100'>
                         MAS INFO
                     </NavLink>
-                    <button className='btn btn-sm btn-primary rounded-pill w-100'>
+                    <button onClick={() => setShowModalContact(true)} className='btn btn-sm btn-primary rounded-pill w-100'>
                         CONTACTAR
                     </button>
                 </footer>

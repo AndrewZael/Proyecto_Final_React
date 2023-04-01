@@ -1,26 +1,26 @@
 import React from 'react';
-import instagram from '../assets/img/instagram.svg';
-import facebook from '../assets/img/facebook.svg';
-import linkedin from '../assets/img/linkedin.svg';
+import Instagram from '../components/icons-svg/Instagram';
+import Facebook from '../components/icons-svg/Facebook';
+import Linkedin from '../components/icons-svg/Linkedin';
 
 const Footer = () => {
   return (
     <footer className='bg-primary px-3 py-4'>
        <div className='row mx-0'>
-            <div className='col-6 d-flex gap-3'>
-                <div>
+            <div className='col-12 col-lg-8 col-xl-6 row mx-0 mb-4'>
+                <div className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
                     <span className='bg-light d-flex justify-content-center align-items-center rounded-circle d-inline-block' 
                     style={{ width: '150px', height: '150px' }}>
                         LOGO
                     </span>
                 </div>
-                <nav>
+                <nav className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
                     <ul className='text-light'>
                         <li><a className='text-light text-decoration-none small'>HOME</a></li>
                         <li><a className='text-light text-decoration-none small'>PUBLICACIONES</a></li>
                     </ul>
                 </nav>
-                <nav>
+                <nav className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
                     <ul className='text-light'>
                         <li><a className='text-light text-decoration-none small'>MI PERFIL</a></li>
                         <li><a className='text-light text-decoration-none small'>MIS FAVORITOS</a></li>
@@ -28,22 +28,22 @@ const Footer = () => {
                         <li><a className='text-light text-decoration-none small'>NUEVA PUBLICACIÓN</a></li>
                     </ul>
                 </nav>
-                <nav>
+                <nav className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
                     <ul className='text-light'>
                         <li><a className='text-light text-decoration-none small'>CONVIERTETE EN PUBLICADOR</a></li>
                     </ul>
                 </nav>
             </div>
-            <div className='col-6 d-flex flex-column align-items-end justify-content-between'>
-                <nav className='d-flex gap-2'>
+            <div className='col-12 col-lg-4 col-xl-6 d-flex flex-column flex-sm-row flex-xl-column align-items-center align-items-xl-end justify-content-between mb-4'>
+                <nav className='d-flex flex-column flex-sm-row flex-lg-column flex-xl-row gap-2 mb-4 mb-sm-0'>
                     <a className='btn btn-sm px-3 rounded-pill btn-outline-light'>REGISTRATE</a>
                     <a className='btn btn-sm px-3 rounded-pill btn-outline-light'>INGRESA</a>
                     <a className='btn btn-sm px-3 rounded-pill btn-auxiliar text-light'>CONVIERTETE EN PRO</a>
                 </nav>
-                <nav className='d-flex gap-2'>
-                    <a><img src={instagram} alt="Instagram" /></a>
-                    <a><img src={facebook} alt="Facebook" /></a>
-                    <a><img src={linkedin} alt="Linkedin" /></a>
+                <nav className='d-flex gap-2 mb-4 mb-sm-0'>
+                    <a><Instagram color="#fcfcfc" size={32} /></a>
+                    <a><Facebook color="#fcfcfc" size={32} /></a>
+                    <a><Linkedin color="#fcfcfc" size={32} /></a>
                 </nav>
             </div>
        </div>

@@ -3,18 +3,18 @@ import HeadPage from '../components/HeadPage';
 import userExample from '../assets/img/user-example.jpg';
 import Value from '../components/Value';
 import Skill from '../components/Skill';
-import facebook from '../assets/img/facebook.svg';
-import linkedin from '../assets/img/linkedin.svg';
+import Facebook from '../components/icons-svg/Facebook';
+import Linkedin from '../components/icons-svg/Linkedin';
 
 const Detail = () => {
   return (
     <main>
       <HeadPage title='Cecilia Ramirez' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 sed do eiusmod tempor incididunt.' />
-       <section title='Cecilia Ramirez' className='col-12 col-sm-10 col-lg-9 col-xl-7 mx-auto min-vh-100 py-5'>
+       <section title='Cecilia Ramirez' className='col-12 col-sm-10 col-lg-9 col-xl-7 mx-auto min-vh-100 py-5 px-4'>
           <div className='row mb-4 pb-4 border-bottom'>
              <div className='col-12 col-md-4'>
-                <div role='img' className='h-100 rounded-circle bg' style={{ backgroundImage: `url(${userExample})` }}></div>
+                <div role='img' className='user-photo-detail w-100 rounded-circle bg mx-auto mb-4 border-soft border shadow-sm' style={{ backgroundImage: `url(${userExample})` }}></div>
              </div>
              <div className='col-12 col-md-8'>
                 <h2 className='fw-bold text-primary'>Cecilia Ramirez</h2>
@@ -49,10 +49,10 @@ sed do eiusmod tempor incididunt.' />
             <Skill text='Google ads' />
             <Skill text='Diseño' />
           </div>
-          <footer className='my-5 pt-4 border-top text-center'>
+          <footer className='my-4 my-md-5 pt-4 border-top text-center'>
             <span className='text-gray d-block mb-2'>Compartir perfil en</span>
-            <a><img src={facebook} alt="Facebook" className='invert' /></a>
-            <a><img src={linkedin} alt="Linkedin" className='invert' /></a>
+            <a><Facebook color='#2A4FA1' size={32} /></a>
+            <a><Linkedin color='#2A4FA1' size={32} /></a>
           </footer>
        </section>
     </main>
