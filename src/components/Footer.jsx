@@ -25,7 +25,7 @@ const Footer = () => {
                         <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>MI PERFIL</a></li>
                         <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>MIS FAVORITOS</a></li>
                         <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>MIS PUBLICACIONES</a></li>
-                        <li><a className='text-light text-decoration-none small'>NUEVA PUBLICACIÓN</a></li>
+                        <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>NUEVA PUBLICACIÓN</a></li>
                     </ul>
                 </nav>
                 <nav className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>

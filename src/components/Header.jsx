@@ -22,7 +22,7 @@ const Header = ({ userLogin = false }) => {
     }else{
       setHead(CLASS);
     }
-  });
+  }, [setHead, location.pathname]);
 
   return (
     <header className={`main-header row mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 ${head}`}>
