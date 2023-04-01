@@ -51,8 +51,8 @@ sed do eiusmod tempor incididunt.' />
           </div>
           <footer className='my-4 my-md-5 pt-4 border-top text-center'>
             <span className='text-gray d-block mb-2'>Compartir perfil en</span>
-            <a><Facebook color='#2A4FA1' size={32} /></a>
-            <a><Linkedin color='#2A4FA1' size={32} /></a>
+            <a href='https://www.google.com/'><Facebook color='#2A4FA1' size={32} /></a>
+            <a href='https://www.google.com/'><Linkedin color='#2A4FA1' size={32} /></a>
           </footer>
        </section>
     </main>

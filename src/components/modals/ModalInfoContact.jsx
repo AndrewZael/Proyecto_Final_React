@@ -31,7 +31,7 @@ const ModalInfoContact = () => {
                 </li>
                 <li className='d-flex flex-column flex-sm-row align-items-center mb-3'>
                     <Linkedin color='#2a4fa1' size={32} /> 
-                    <a href='#' target='_blank' className='ms-2 fw-bold'>https://www.linkedin.com/in/cecilia</a>
+                    <a href='https://www.google.com/' target='_blank' className='ms-2 fw-bold'>https://www.linkedin.com/in/cecilia</a>
                 </li>
             </ul>
         </Modal.Body>

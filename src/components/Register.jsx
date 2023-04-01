@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
 import google from '../assets/img/google.svg';
 
 const Register = ({ only }) => {

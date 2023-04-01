@@ -2,7 +2,6 @@ import React from 'react';
 import mp4 from '../assets/video/video.mp4';
 import webm from '../assets/video/video.webm';
 import ogv from '../assets/video/video.ogv';
-import { useEffect } from 'react';
 
 const Animation = () => {
   return (
