@@ -3,7 +3,7 @@ import google from '../assets/img/google.svg';
 
 const Register = ({ only }) => {
   return (
-    <section title='Login' className={`p-3 rounded border bg-light position-relative w-100 ${only && 'shadow border-primary'}`}>
+    <section title='Regitro' className={`py-3 px-4 rounded border bg-light position-relative w-100 ${only && 'shadow border-primary'}`}>
         <header className='text-center mb-4'>
             <span className='p-4 bg-secondary rounded-circle d-inline-block'></span>
             <span className='fw-bold d-block'>Crea tu cuenta</span>

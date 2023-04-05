@@ -5,25 +5,33 @@ import CardInfo from '../components/CardInfo';
 import Login from '../components/Login';
 import Animation from '../components/Animation';
 import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import Context from '../contexts/Context';
 
 const Home = () => {
+  const { userLogin } = useContext(Context);
   return (
     <>
     <Animation />
     <main className='mx-auto container'>
-      <section title='Principal' className='row justify-content-between py-5 position-relative'>
-        <div className='col-12 col-md-6 mb-4 mb-md-0 p-4 bg-light rounded'>
-          <h1 className='fw-bold text-xxl'>
-            Lorem ipsum dolor sit amet, consectetur.
-          </h1>
-          <p className='h5 fw-light'>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimveniam, quis nostrud exercitation.</p>
+      <section title='Principal' className={`row justify-content-between position-relative ${userLogin ? 'main-home-login pt-5 pb-3' : 'py-5'}`}>
+        <div className={`col-11 mx-auto p-4 bg-light rounded ${userLogin ? 'd-flex flex-column justify-content-center shadow-sm' : 'col-md-6'}`}>
+          <div className={userLogin ? 'col-md-9 col-xxl-7 mx-auto text-center' : 'col-12'}>
+            <span className='bg-secondary p-5 d-inline-block rounded-circle'></span>
+            <h1 className='fw-bold text-xxl'>
+              Lorem ipsum dolor sit amet, consectetur.
+            </h1>
+            <p className='h5 fw-light'>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimveniam, quis nostrud exercitation.</p>
+          </div>
         </div>
+        { !userLogin ?
         <div className='col-12 col-md-5 col-xl-4'>
           <Login />
-        </div>
+        </div> : null
+        }
       </section>
 
-      <section title='Publicaciones' className='row mb-5 py-5 justify-content-around gap-4'>
+      <section title='Publicaciones' className='row mb-5 pb-5 justify-content-around gap-4'>
         <HeadSection title='Lorem ipsum dolor sit amet' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.' />
           <div className='col-10 col-md-5 col-lg-4 col-xl-3 mb-5 mb-xl-0'>
             <Card home={true} />

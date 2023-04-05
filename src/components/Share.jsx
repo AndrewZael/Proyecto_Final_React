@@ -3,7 +3,7 @@ import Icon from './Icon';
 
 const Share = () => {
   return (
-    <button className='btn px-2 text-primary'>
+    <button title='Compartir' className='btn px-2 text-primary'>
         <Icon icon="share" />
     </button>
   )

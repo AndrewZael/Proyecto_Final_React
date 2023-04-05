@@ -1,31 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import ItemMenu from './ItemMenu';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { useContext } from 'react';
+import Context from '../contexts/Context';
+import { getAuth } from 'firebase/auth';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
-const Header = ({ userLogin = false }) => {
+const Header = () => {
 
+  const navigate = useNavigate();
+  const auth = getAuth();
   const CLASS = 'bg-secondary border-bottom';
-  const [head, setHead] = useState(CLASS);
+  const [head] = useState(CLASS);
+  // const [head, setHead] = useState(CLASS);
+  const { user, setUser, userLogin, setUserLogin } = useContext(Context);
   const location = useLocation();
 
-  const checkScrollY = () => {
+  /*const checkScrollY = () => {
     window.scrollY >= 65 ? setHead(CLASS) : setHead('');
-  }
+  }*/
+
+  const logout = () => {
+    auth.signOut().then(() => {
+       setUser({});
+       setUserLogin(false);
+       navigate('/');
+    }).catch(() => {
+       
+    });
+  };
 
   useEffect(() => {
-    if(location.pathname === '/'){
-      checkScrollY();
-      window.addEventListener('scroll', () => {
-        checkScrollY();
-      });
-    }else{
-      setHead(CLASS);
-    }
-  }, [setHead, location.pathname]);
+     auth.onAuthStateChanged(currentUser => {
+       if(currentUser){
+          setUserLogin(true);
+          onValue(ref(getDatabase(), `users/${currentUser.uid}`), snapshot => {
+            setUser(snapshot.val());
+          });
+       }else{
+        location.pathname.includes('perfil') && navigate('/');
+       }
+    })
+  }, [location, auth, navigate, setUser, setUserLogin]);
 
   return (
-    <header className={`main-header row mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 ${head}`}>
+    <header className={`main-header row mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 bg-secondary border-bottom ${head}`}>
       <nav className='col-6'>
         <ul className='p-0 m-0 list-unstyled d-flex'>
             <li className='me-3 align-items-center d-none d-sm-flex'>
@@ -41,6 +61,7 @@ const Header = ({ userLogin = false }) => {
             </li>
         </ul>
       </nav>
+
       { !userLogin ? 
         <nav className='col-6 d-flex justify-content-end'>
           <Link to='/registro' className='btn btn-sm btn-outline-light rounded-pill px-3'>REGISTRATE</Link>
@@ -48,7 +69,7 @@ const Header = ({ userLogin = false }) => {
         </nav>
         :
         <div className='col-6 d-flex text-light justify-content-end align-items-center'>
-          <small className='d-none d-sm-inline'>¡Hola! <b>Pedro Perez</b></small>
+          <small className='d-none d-sm-inline'>¡Hola! <b>{ user.username }</b></small>
           <Dropdown>
             <Dropdown.Toggle variant="none" className='text-light'>
               <span className="material-icons-outlined">manage_accounts</span>
@@ -58,6 +79,10 @@ const Header = ({ userLogin = false }) => {
               <ItemMenu label="Mis favoritos" icon="favorite" to='perfil/favoritos' />
               <ItemMenu label="Mis publicaciones" icon="article" to='perfil/mis-publicaciones' />
               <ItemMenu label="Nueva publicación" icon="post_add" to='perfil/nueva-publicacion' />
+              <button onClick={logout} className='btn d-flex text-decoration-none px-3 py-2 text-nowrap text-gray null w-100'>
+                <span className="material-icons-outlined me-2">logout</span> 
+                <span>Salir</span>
+              </button>
             </Dropdown.Menu>
           </Dropdown>
         </div>

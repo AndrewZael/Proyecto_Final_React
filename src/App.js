@@ -1,8 +1,9 @@
 import './assets/css/custom.css';
 import './assets/css/style.scss';
 import React, { useState } from 'react';
-import Header from './components/Header';
 import { BrowserRouter, Routes, Route  } from 'react-router-dom';
+import './firebase';
+import Header from './components/Header';
 import Footer from './components/Footer';
 import Detail from './views/Detail';
 import Publications from './views/Publications';
@@ -20,9 +21,15 @@ import ModalInfoContact from './components/modals/ModalInfoContact';
 function App() {
 
   const [showModalContact, setShowModalContact] = useState(false);
+  const [userLogin, setUserLogin] = useState(false);
+  const [user, setUser] = useState({});
   const share = {
     showModalContact,
-    setShowModalContact
+    setShowModalContact,
+    user,
+    setUser,
+    userLogin,
+    setUserLogin
   }
 
   return (
@@ -30,10 +37,10 @@ function App() {
       <Context.Provider value={share}>
         <ModalInfoContact />
         <BrowserRouter>
-            <Header userLogin={true} />
+            <Header />
             <Routes>
               <Route path='/' element={<Home />} />
-              <Route path='/perfil/' element={<Profile />} >
+              <Route path='/perfil/' element={ <Profile /> } >
                 <Route path='mis-datos' element={<ProfileData />} />
                 <Route path='favoritos' element={<ProfileFavorites />} />
                 <Route path='mis-publicaciones' element={<ProfileMyPosts />} />
