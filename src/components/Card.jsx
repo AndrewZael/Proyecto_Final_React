@@ -6,9 +6,9 @@ import Share from '../components/Share';
 import Context from '../contexts/Context';
 import { useContext } from 'react';
 
-const Card = ({ home = false }) => {
+const Card = ({ home = false, obj }) => {
   
-   const { setShowModalContact } =  useContext(Context); 
+  const { setShowModalContact } =  useContext(Context); 
 
   return (
     <article className='custom-card text-primary rounded custom-shadow bg-light position-relative px-0'>

@@ -90,7 +90,7 @@ const Login = ({ only = false }) => {
             </div>
 
             {
-                errorForm ? <AlertMessage variant='danger' text="Correo o contraseña incorrecta " /> : null
+                errorForm ? <AlertMessage icon='error' variant='danger' text="Correo o contraseña incorrecta " /> : null
             }
 
             <NavLink to='/login' className='btn link d-block small'>Recuperar contraseña</NavLink>

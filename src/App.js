@@ -23,13 +23,16 @@ function App() {
   const [showModalContact, setShowModalContact] = useState(false);
   const [userLogin, setUserLogin] = useState(false);
   const [user, setUser] = useState({});
+  const [publications, setPublications] = useState([]);
   const share = {
     showModalContact,
     setShowModalContact,
     user,
     setUser,
     userLogin,
-    setUserLogin
+    setUserLogin,
+    publications,
+    setPublications
   }
 
   return (
@@ -40,7 +43,7 @@ function App() {
             <Header />
             <Routes>
               <Route path='/' element={<Home />} />
-              <Route path='/perfil/' element={ <Profile /> } >
+              <Route path='/perfil//*' element={ <Profile /> } >
                 <Route path='mis-datos' element={<ProfileData />} />
                 <Route path='favoritos' element={<ProfileFavorites />} />
                 <Route path='mis-publicaciones' element={<ProfileMyPosts />} />

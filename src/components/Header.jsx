@@ -11,10 +11,14 @@ const Header = () => {
 
   const navigate = useNavigate();
   const auth = getAuth();
-  const CLASS = 'bg-secondary border-bottom';
-  const [head] = useState(CLASS);
-  // const [head, setHead] = useState(CLASS);
-  const { user, setUser, userLogin, setUserLogin } = useContext(Context);
+  const db = getDatabase();
+  const { 
+    user, 
+    setUser, 
+    userLogin, 
+    setUserLogin,
+    setPublications 
+  } = useContext(Context);
   const location = useLocation();
 
   /*const checkScrollY = () => {
@@ -31,11 +35,12 @@ const Header = () => {
     });
   };
 
+  // Verifica si el usuario ha hecho login en la plataforma
   useEffect(() => {
      auth.onAuthStateChanged(currentUser => {
        if(currentUser){
           setUserLogin(true);
-          onValue(ref(getDatabase(), `users/${currentUser.uid}`), snapshot => {
+          onValue(ref(db, `users/${currentUser.uid}`), snapshot => {
             setUser(snapshot.val());
           });
        }else{
@@ -44,8 +49,22 @@ const Header = () => {
     })
   }, [location, auth, navigate, setUser, setUserLogin]);
 
+  // Actualiza la información de publicaciones
+  useEffect(() => {
+      onValue(ref(db, 'publications'), snapshot => {
+         const publications = [];
+         snapshot.forEach(child => {
+           const publication = child.val();
+           publication.key = child.key;
+           publications.push(publication);
+         });
+        setPublications(publications);
+        console.log(publications);
+      });
+  }, []);
+
   return (
-    <header className={`main-header row mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 bg-secondary border-bottom ${head}`}>
+    <header className={`main-header row mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 bg-secondary border-bottom`}>
       <nav className='col-6'>
         <ul className='p-0 m-0 list-unstyled d-flex'>
             <li className='me-3 align-items-center d-none d-sm-flex'>
