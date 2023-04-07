@@ -1,20 +1,13 @@
 import React from 'react';
 import Search from './Search';
+import Sort from './Sort';
 
 const Filters = ({ styles }) => {
   return (
     <section id='filters' className={styles}>
        <form className='px-3 py-4 position-sticky'>
             <Search />
-            <label htmlFor='search' className='mb-1 small'>Ordenar</label>
-            <div className="input-group mb-3">
-                <select id='search' className="form-control border py-2" aria-label="Ordenar">
-                    <option>Ordenar por</option>
-                    <option>Valor</option>
-                    <option>Nombre</option>
-                </select>
-            </div>
-
+            <Sort />
             <section title='Países'>
                 <b>País</b>
                 <ul className='list-unstyled mt-1'>

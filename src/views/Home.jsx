@@ -7,6 +7,7 @@ import Animation from '../components/Animation';
 import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import Context from '../contexts/Context';
+import Benefits from '../shared/Benefits';
 
 const Home = () => {
   const { userLogin } = useContext(Context);
@@ -50,18 +51,12 @@ const Home = () => {
         <section title='Beneficios' className='mb-4 py-4 mx-auto col-11 col-lg-7 justify-content-around gap-4'>
         <HeadSection title='Lorem ipsum dolor sit amet' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.' />
           <div className='row pt-5'>
-            <div className='col-12 col-sm-6 mb-4 pb-5'>
-              <CardInfo icon='check_circle' />
-            </div>
-            <div className='col-12 col-sm-6 mb-4 pb-5'>
-              <CardInfo icon='lock' />
-            </div>
-            <div className='col-12 col-sm-6 mb-4 pb-5'>
-              <CardInfo icon='language' />
-            </div>
-            <div className='col-12 col-sm-6 mb-4 pb-5'>
-              <CardInfo icon='verified_user' />
-            </div>
+            { Benefits.map(b => (
+                <div key={b.icon} className='col-12 col-sm-6 mb-4 pb-5'>
+                  <CardInfo icon={b.icon} text={b.text} title={b.title} />
+                </div>
+            ))
+            }
           </div>
         </section>
     </main>

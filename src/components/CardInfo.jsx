@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from './Icon';
 
-const CardInfo = ({ icon = 'home' }) => {
+const CardInfo = ({ icon, text, title }) => {
   return (
     <article className='custom-card text-primary rounded custom-shadow bg-light position-relative px-0'>
         <header className='text-center'>
@@ -12,8 +12,8 @@ const CardInfo = ({ icon = 'home' }) => {
         <div className='position-relative overflow-hidden p-3 rounded-bottom'>
             <div className='info-card p-3 rounded border border-soft position-relative bg-light mt-5'>
                 <div className='text-dark'>
-                    <h5 className='h6 fw-bold'>Titulo</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                    <h5 className='h6 fw-bold'>{ title }</h5>
+                    <p>{ text }</p>
                 </div>
             </div>
             <div aria-hidden="true" className='decoration-card rounded-circle bg-primary position-absolute'></div>
