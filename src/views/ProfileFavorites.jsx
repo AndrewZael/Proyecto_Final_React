@@ -16,7 +16,7 @@ const ProfileFavorites = () => {
         <div className='row mt-5 pt-5'>
             {
               user.favorites?.map(fav => (
-                <div className='col-12 col-sm-6 col-md-12 col-lg-6 mb-5 pb-4'>
+                <div key={fav.publication_id} className='col-12 col-sm-6 col-md-12 col-lg-6 mb-5 pb-4'>
                   <Card obj={fav} />
                 </div>
               ))

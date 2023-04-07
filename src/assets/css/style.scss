@@ -12,11 +12,11 @@ html{
 }
 
 /*PLACEHOLDER*/
-::placeholder { color: $gray!important; }
+::placeholder { color: $gray-light!important; }
   
-:-ms-input-placeholder { color: $gray!important; }
+:-ms-input-placeholder { color: $gray-light!important; }
 
-::-ms-input-placeholder { color: $gray!important; }
+::-ms-input-placeholder { color: $gray-light!important; }
 /*PLACEHOLDER*/
 
 /*HEADER*/
@@ -108,6 +108,14 @@ html{
     }
 }
 /*PROFILE*/
+
+/*FAVORITE*/
+.btn-fav span{
+    &:hover{
+        color: var(--bs-danger)!important;
+    }
+}
+/*FAVORITE*/
 
 /*UTILITIES*/
 .border-soft{ border-color: $primary-rgba!important; }
