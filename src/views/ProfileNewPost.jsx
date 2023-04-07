@@ -13,7 +13,8 @@ const ProfileNewPost = () => {
     user,
     setUser,
     publications, 
-    setPublications 
+    setPublications,
+    setFilteredList 
   } = useContext(Context);
   const [citeLength, setCiteLength] = useState(0);
   const [aboutYouLength, setAboutYouLength] = useState(0); 
@@ -58,6 +59,7 @@ const ProfileNewPost = () => {
     publication.username = user.username;
     publication.user_id = user.user_id;
     publication.publication_id = idRef;
+    publication.profile_picture = user.profile_picture;
 
     contact.user_id = user.user_id;
     contact.publication_id = idRef;
@@ -65,6 +67,7 @@ const ProfileNewPost = () => {
     setPublication(publication);
     setContact(contact);
     setPublications([publication, ...publications]);
+    setFilteredList([publication, ...publications])
 
     if(!Array.isArray(user.publications)){
         user.publications = [];

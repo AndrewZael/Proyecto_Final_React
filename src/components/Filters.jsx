@@ -1,18 +1,11 @@
 import React from 'react';
-import Icon from './Icon';
+import Search from './Search';
 
 const Filters = ({ styles }) => {
   return (
     <section id='filters' className={styles}>
        <form className='px-3 py-4 position-sticky'>
-            <label htmlFor='search' className='mb-1 small'>Buscar</label>
-            <div className="input-group mb-3">
-                <div className="input-group-prepend border-start border-top border-bottom rounded-start p-2 bg-white">
-                    <Icon icon='search' color='dark' />
-                </div>
-                <input id='search' className="form-control border border-start-0" placeholder="Ej: Seo, Chile" aria-label="Buscar" />
-            </div>
-
+            <Search />
             <label htmlFor='search' className='mb-1 small'>Ordenar</label>
             <div className="input-group mb-3">
                 <select id='search' className="form-control border py-2" aria-label="Ordenar">
@@ -41,7 +34,7 @@ const Filters = ({ styles }) => {
             </section>
 
             <section title='Tags'>
-                <b>Tags</b>
+                <b>Skills</b>
                 <ul className='list-unstyled mt-1'>
                     <li className='mb-1'>
                         <input id='skill-1' type='checkbox' />

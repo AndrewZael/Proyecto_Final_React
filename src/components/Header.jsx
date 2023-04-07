@@ -17,7 +17,8 @@ const Header = () => {
     setUser, 
     userLogin, 
     setUserLogin,
-    setPublications 
+    setPublications,
+    setFilteredList
   } = useContext(Context);
   const location = useLocation();
 
@@ -60,6 +61,7 @@ const Header = () => {
            publications.push(publication);
          });
         setPublications(publications);
+        setFilteredList(publications);
       });
   }, []);
 

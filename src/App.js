@@ -24,6 +24,7 @@ function App() {
   const [userLogin, setUserLogin] = useState(false);
   const [user, setUser] = useState({});
   const [publications, setPublications] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
   const share = {
     showModalContact,
     setShowModalContact,
@@ -32,7 +33,9 @@ function App() {
     userLogin,
     setUserLogin,
     publications,
-    setPublications
+    setPublications,
+    filteredList,
+    setFilteredList
   }
 
   return (
