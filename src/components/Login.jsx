@@ -96,7 +96,6 @@ const Login = ({ only = false }) => {
             <label htmlFor='password' className='mb-1 small'>Contraseña</label>
             <div className="input-group mb-3 flex-column">
                 <input type='password' id='password' className="form-control border w-100" placeholder="*********" aria-label="Contraseña" autoComplete='current-password' required pattern='[a-zA-Z0-9]{6,}' onKeyUp={e => setUserPassword(e.target.value)} />
-                <small className='text-gray text-small d-block mt-1'>Mínimo 6 caracteres y solo debe contener números y letras.</small>
             </div>
 
             {

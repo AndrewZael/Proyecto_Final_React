@@ -25,6 +25,7 @@ const Header = () => {
     window.scrollY >= 65 ? setHead(CLASS) : setHead('');
   }*/
 
+  // Cierra sesión
   const logout = () => {
     auth.signOut().then(() => {
        setUser({});
