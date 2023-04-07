@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import google from '../assets/img/google.svg';
 import { getAuth, signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import { getDatabase, ref, set, onValue, get } from "firebase/database";
 import { useContext } from 'react';
 import Context from '../contexts/Context';
 import { useState } from 'react';
@@ -24,18 +24,23 @@ const Login = ({ only = false }) => {
   const LoginGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then((result) => {
-        // const credential = GoogleAuthProvider.credentialFromResult(result);
-        // const token = credential.accessToken;
         const user = result.user;
-        const userData = getUserData(user);
-        if(userData.user_id !== user.uid){
-            setUser(UserObj(user));
-            SaveUserDatabase(user);
-        }else{
-            setUser(userData);
-        }
+        const userData = 
+        getUserData(user).then(userData => {
+            console.log(userData);
+            if(userData.user_id === user.uid){
+                console.log('usuario existe');
+                setUser(userData);
+            }else{
+                console.log('Usuario nuevo');
+                setUser(UserObj(user));
+                SaveUserDatabase(user);
+            }
+            setUserLogin(true);             
+        }).catch(() => {
+            
+        });
 
-        setUserLogin(true);
     }).catch(err => {
         console.log(err);
     });
@@ -54,17 +59,22 @@ const Login = ({ only = false }) => {
             setUser(userData);
         }
         setUserLogin(true);
-        setPreload(false);
     }).catch(error => {
         setErrorForm(true);
+    }).finally(() => {
         setPreload(false);
     });
   }
 
   const getUserData = (user) => {
-    onValue(ref(db, `users/${user.uid}`), snapshot => {
-        return snapshot.val();
-    });
+    return  new Promise((resolve, reject) => {
+        onValue(ref(db, `users/${user.uid}`), snapshot => {
+            resolve(snapshot.val());
+       }, error => {
+            reject(error);
+          }
+       )
+    })
   }
 
   const SaveUserDatabase = (user) => {

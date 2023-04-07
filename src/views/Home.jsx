@@ -16,12 +16,12 @@ const Home = () => {
     <main className='mx-auto container'>
       <section title='Principal' className={`row justify-content-between position-relative ${userLogin ? 'main-home-login pt-5 pb-3' : 'py-5'}`}>
         <div className={`col-11 mx-auto p-4 bg-light rounded ${userLogin ? 'd-flex flex-column justify-content-center shadow-sm' : 'col-md-6'}`}>
-          <div className={userLogin ? 'col-md-9 col-xxl-7 mx-auto text-center' : 'col-12'}>
+          <div className={userLogin ? 'col-md-9 col-xxl-10 mx-auto text-center' : 'col-12'}>
             <span className='bg-secondary p-5 d-inline-block rounded-circle'></span>
             <h1 className='fw-bold text-xxl'>
-              Lorem ipsum dolor sit amet, consectetur.
+              Posiciona tu negocio rápidamente en cualquier país.
             </h1>
-            <p className='h5 fw-light'>tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minimveniam, quis nostrud exercitation.</p>
+            <p className='h5 fw-light'>Contacta con profesionales digitales de todo el mundo y has que tu negocio sea visible.</p>
           </div>
         </div>
         { !userLogin ?

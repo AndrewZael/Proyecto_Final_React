@@ -59,7 +59,6 @@ const Header = () => {
            publications.push(publication);
          });
         setPublications(publications);
-        console.log(publications);
       });
   }, []);
 
