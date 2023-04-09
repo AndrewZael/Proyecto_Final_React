@@ -17,6 +17,7 @@ import ProfileMyPosts from './views/ProfileMyPosts';
 import ProfileNewPost from  './views/ProfileNewPost';
 import Context from './contexts/Context';
 import ModalInfoContact from './components/modals/ModalInfoContact';
+import Feedback from './components/Feedback';
 
 function App() {
 
@@ -25,6 +26,12 @@ function App() {
   const [user, setUser] = useState({});
   const [publications, setPublications] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
+  const [infoFeedBack, setInfoFeedBack] = useState({
+    show: false,
+    title: '',
+    message: ''
+  });
+
   const share = {
     showModalContact,
     setShowModalContact,
@@ -35,12 +42,15 @@ function App() {
     publications,
     setPublications,
     filteredList,
-    setFilteredList
+    setFilteredList,
+    infoFeedBack,
+    setInfoFeedBack
   }
 
   return (
     <div className="App">
       <Context.Provider value={share}>
+        <Feedback />
         <ModalInfoContact />
         <BrowserRouter>
             <Header />
