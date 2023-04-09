@@ -1,30 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import HeadPage from '../components/HeadPage';
-import userExample from '../assets/img/user-example.jpg';
 import Value from '../components/Value';
 import Skill from '../components/Skill';
 import Facebook from '../components/icons-svg/Facebook';
 import Linkedin from '../components/icons-svg/Linkedin';
+import { useLocation, useParams } from 'react-router-dom';
+import Context from '../contexts/Context';
 
 const Detail = () => {
+  const { publications } = useContext(Context);
+  const { id } = useParams();
+  const [publication, setpublication] = useState({});
+  const location = useLocation();
+  const url = `${window.location.protocol}//${window.location.hostname}${location.pathname}`;
+  
+  useEffect(() => {
+    const post = publications.find(p => p.publication_id === id);
+    setpublication(post);
+  },[publications]);
+
   return (
     <main>
-      <HeadPage title='Cecilia Ramirez' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-sed do eiusmod tempor incididunt.' />
-       <section title='Cecilia Ramirez' className='col-12 col-sm-10 col-lg-9 col-xl-7 mx-auto min-vh-100 py-5 px-4'>
+      <HeadPage title={publication?.username} subtitle={publication?.cite} />
+       <section title={publication?.username} className='col-12 col-sm-10 col-lg-9 col-xl-7 mx-auto min-vh-100 py-5 px-4'>
           <div className='row mb-4 pb-4 border-bottom'>
              <div className='col-12 col-md-4'>
-                <div role='img' className='user-photo-detail w-100 rounded-circle bg mx-auto mb-4 border-soft border shadow-sm' style={{ backgroundImage: `url(${userExample})` }}></div>
+                <div role='img' className='user-photo-detail w-100 rounded-circle bg mx-auto mb-4 border-soft border shadow-sm' style={{ backgroundImage: `url(${publication?.profile_picture})` }}></div>
              </div>
              <div className='col-12 col-md-8'>
-                <h2 className='fw-bold text-primary'>Cecilia Ramirez</h2>
-                <span className='fw-bold text-primary'>Mexico</span>
-                <span className='fw-bold d-block mt-2'>Community manager</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
+                <h2 className='fw-bold text-primary'>{ publication?.username }</h2>
+                <span className='fw-bold text-primary'>{ publication?.country?.label }</span>
+                <span className='fw-bold d-block mt-2'>{ publication?.specialty?.label }</span>
+                <p>{ publication?.about_you }</p>
                 <footer className='text-end pb-3'>
-                   <Value val={5.1} sizeData={3.156} sizeCode={1.75} sizeHrs={1.3} />
+                   <Value val={publication?.value} sizeData={3.156} sizeCode={1.75} sizeHrs={1.3} />
                    <button className='btn btn-primary btn-sm rounded-pill px-4 py-2 mt-3'>
                       CONTACTAR
                    </button>
@@ -32,27 +41,27 @@ sed do eiusmod tempor incididunt.' />
              </div>
           </div>
           <div className='pt-2'>
-            <h3 className='fw-normal text-primary'>Más sobre Cecilia</h3>
+            <h3 className='fw-normal text-primary'>Más sobre { publication?.username }</h3>
             <div className='text-gray'>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <p>Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>{ publication?.experience }</p>
             </div>
           </div>
           <div className='pt-2'>
             <h3 className='fw-normal text-primary mb-3'>Skills</h3>
-            <Skill text='SEO' />
-            <Skill text='SEM' />
-            <Skill text='Wordpress' />
-            <Skill text='Redes sociales' />
-            <Skill text='HTML' />
-            <Skill text='Google ads' />
-            <Skill text='Diseño' />
+            {
+              publication?.skills?.map(skill => (
+                <Skill key={skill?.value} text={skill?.label} />
+              ))
+            }
           </div>
           <footer className='my-4 my-md-5 pt-4 border-top text-center'>
             <span className='text-gray d-block mb-2'>Compartir perfil en</span>
-            <a href='https://www.google.com/'><Facebook color='#2A4FA1' size={32} /></a>
-            <a href='https://www.google.com/'><Linkedin color='#2A4FA1' size={32} /></a>
+            <a href={`https://www.facebook.com/share.php?u=${url}`} target='_blank' rel='noopener noreferrer'>
+              <Facebook color='#2A4FA1' size={32} />
+            </a>
+            <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}`} target='_blank' rel='noopener noreferrer'>
+              <Linkedin color='#2A4FA1' size={32} />
+            </a>
           </footer>
        </section>
     </main>

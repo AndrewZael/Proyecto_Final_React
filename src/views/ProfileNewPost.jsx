@@ -5,7 +5,7 @@ import Context from '../contexts/Context';
 import { useState } from 'react';
 import Countries from '../shared/Countries';
 import Specialties from '../shared/Specialties';
-import { getDatabase, ref, set, push } from "firebase/database";
+import { getDatabase, ref, set, push, query, orderByChild, equalTo, get } from "firebase/database";
 import Preload from '../components/Preload';
 
 const ProfileNewPost = () => {
@@ -23,6 +23,8 @@ const ProfileNewPost = () => {
 
   const [publication, setPublication] = useState({});
   const [contact, setContact] = useState({});
+
+  const db = getDatabase();
 
   useEffect(() => {
     const skills = document.getElementById("skills");
@@ -50,9 +52,9 @@ const ProfileNewPost = () => {
   }, []);
 
   const submit = e => {
+
     setUploadingForm(true);
     e.preventDefault();
-    const db = getDatabase();
     const refPublication = ref(db, `publications/${user.user_id}`);
     const idRef = push(refPublication).key;
 
@@ -66,6 +68,7 @@ const ProfileNewPost = () => {
 
     setPublication(publication);
     setContact(contact);
+
     setPublications([publication, ...publications]);
     setFilteredList([publication, ...publications])
 
@@ -74,6 +77,12 @@ const ProfileNewPost = () => {
     }
     user.publications = [publication, ...user.publications];
     setUser(user);
+
+    // Filtros
+    const filterCountriesRef = query(ref(db, 'filters/countries'), orderByChild('name'));
+    const filterSkillsRef = query(ref(db, 'filters/skills'), orderByChild('name'));
+    // checkFilterExists(filterCountriesRef, 'filters/countries', publication.country);
+    checkFilterExists(filterSkillsRef, 'filters/skills', publication.skills);
 
     Promise.all([
       set(ref(db, `users/${user.user_id}`), user),
@@ -85,6 +94,27 @@ const ProfileNewPost = () => {
       console.error(error);
     }).finally(() => setUploadingForm(false));
 
+  };
+
+  const checkFilterExists = (reference, strRef, data) => {
+    let exists = false;
+    console.log(data);
+    get(reference).then(snapshot => {
+      snapshot.forEach(childSnapshot => {
+        console.log(childSnapshot.val());
+        const child = childSnapshot.val();
+        /*if(child.name.toLowerCase() === obj.name){
+            exists = true;
+        }*/
+      });
+
+      if(!exists){
+       /*push(ref(db, strRef), {
+         label: obj.label,
+         name: obj.name
+       });*/
+      }
+   });
   };
 
   return (

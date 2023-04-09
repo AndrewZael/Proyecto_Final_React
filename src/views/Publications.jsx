@@ -14,7 +14,7 @@ const Publications = () => {
        <section className='col-12 col-sm-8 col-md-8 col-lg-9 col-xl-10 pb-5 row mx-0 pt-5 mt-4' title='Publicaciones'>
             {
               filteredList.map(publication => (
-                <div key={publication.publication_id} className='col-12 col-lg-6 col-xl-3 mb-5 pb-4'>
+                <div key={publication.publication_id} className='col-12 col-lg-6 col-xl-4 col-xxl-3 mb-5 pb-4'>
                   <Card obj={publication} />
                 </div>
               ))
