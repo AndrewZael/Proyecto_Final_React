@@ -16,7 +16,7 @@ const Profile = () => {
   return (
     <main>
        <HeadPage title={`¡Hola! ${user.username}`} subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.' />
-       <section className='col-12 col-lg-9 col-xl-8 col-xxl-7 pb-5 row mx-auto px-4 pt-5 mt-4' title='Mis datos'>
+       <section className='col-12 col-lg-9 col-xxl-7 pb-5 row mx-auto px-4 pt-5 mt-4' title='Mis datos'>
            <div className='col-12 col-md-4'>
                 <MenuPerfil />
            </div>

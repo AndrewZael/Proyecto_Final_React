@@ -1,12 +1,12 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import Icon from './Icon';
 import Context from '../contexts/Context';
 import { getDatabase, set, ref } from 'firebase/database';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const Fav = ({ id, fav = false }) => {
   const { user, setUser, userLogin, publications } = useContext(Context);
-
   const favorite = () => {
     const publication = publications.find(p => p.publication_id === id);
     if(!Array.isArray(user.favorites)){
@@ -29,9 +29,16 @@ const Fav = ({ id, fav = false }) => {
   return (
     <>
     {userLogin ?
-      <button onClick={favorite} title={fav ? 'Remover de mis favoritos' : 'Añadir a mis favoritos'} className='btn-fav btn px-2'>
-        <Icon icon="favorite" color={fav ? 'danger' : 'primary'} />
-      </button> : null
+      <>
+      <OverlayTrigger
+        placement="bottom"
+        overlay={<Tooltip>{fav ? 'Remover de mis favoritos' : 'Añadir a mis favoritos'}</Tooltip>}
+      >
+        <button onClick={favorite} title='' className='btn-fav btn px-2'>
+          <Icon icon="favorite" color={fav ? 'danger' : 'primary'} />
+        </button>
+      </OverlayTrigger>
+      </> : null
     }
     </>
   )
