@@ -17,16 +17,16 @@ const Footer = () => {
                         LOGO
                     </span>
                 </div>
-                <nav className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
+                <nav className='navigation col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
                     <ul className='text-light'>
-                        <li><NavLink to='/' className='text-light text-decoration-none small'>
+                        <li><NavLink to='/' className='text-light small'>
                             HOME</NavLink></li>
-                        <li><NavLink to='/publicaciones' className='text-light text-decoration-none small'>PUBLICACIONES</NavLink></li>
+                        <li><NavLink to='/publicaciones' className='text-light small'>PUBLICACIONES</NavLink></li>
                     </ul>
                 </nav>
                 {
                     userLogin ? 
-                    <nav className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
+                    <nav className='navigation col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
                         <ul className='text-light'>
                             <li><NavLink to='/perfil/mis-datos' className='text-light text-decoration-none small'>MI PERFIL</NavLink></li>
                             <li><NavLink to='/perfil/favoritos' className='text-light text-decoration-none small'>
@@ -59,16 +59,16 @@ const Footer = () => {
                     }
                 </nav>
                 <nav className='d-flex gap-2 mb-4 mb-sm-0'>
-                    <a href='https://www.instagram.com/' target='_blank' rel='noopener noreferrer'><Instagram color="#fcfcfc" size={32} /></a>
-                    <a href='https://www.facebook.com/' target='_blank' rel='noopener noreferrer'><Facebook color="#fcfcfc" size={32} /></a>
-                    <a href='https://www.linkedin.com/' target='_blank' rel='noopener noreferrer'><Linkedin color="#fcfcfc" size={32} /></a>
+                    <a href='https://www.instagram.com/' target='_blank' rel='noopener noreferrer' className='link-icon'><Instagram color="#fcfcfc" size={32} /></a>
+                    <a href='https://www.facebook.com/' target='_blank' rel='noopener noreferrer' className='link-icon'><Facebook color="#fcfcfc" size={32} /></a>
+                    <a href='https://www.linkedin.com/' target='_blank' rel='noopener noreferrer' className='link-icon'><Linkedin color="#fcfcfc" size={32} /></a>
                 </nav>
             </div>
        </div>
-       <nav className='d-flex justify-content-center gap-3'>
-            <a href='https://www.google.com/' className='text-light small'>Políticas de privacidad</a>
+       <nav className='navigation d-flex justify-content-center gap-3'>
+            <NavLink to='/politicas-de-privacidad' className='text-light small'>Políticas de privacidad</NavLink>
             <span className='text-light'>&bull;</span>
-            <a href='https://www.google.com/' className='text-light small'>Términos y condiciones</a>
+            <NavLink to='/terminos-y-condiciones' className='text-light small'>Términos y condiciones</NavLink>
        </nav>
     </footer>
   )

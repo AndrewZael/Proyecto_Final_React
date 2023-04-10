@@ -11,6 +11,12 @@ html{
     overflow-x: hidden;
 }
 
+*{
+    &:focus{
+        outline: 1px dotted;
+    }
+}
+
 /*PLACEHOLDER*/
 ::placeholder { color: $gray-light!important; }
   
@@ -36,6 +42,24 @@ html{
     border-radius: 50rem;
 }
 /*SCROLL*/
+
+/*MENUS*/
+.navigation{
+    a{
+        text-decoration: none;
+        &:hover,
+        &.active{
+            border-bottom: 1px dotted;
+            padding-bottom: .15rem;
+        }
+    }
+}
+.link-icon{
+    &:hover{
+        opacity: .7;
+    }
+}
+/*MENUS*/
 
 /*HEADER*/
 .main-header{

@@ -55,10 +55,10 @@ const Detail = () => {
           </div>
           <footer className='my-4 my-md-5 pt-4 border-top text-center'>
             <span className='text-gray d-block mb-2'>Compartir perfil en</span>
-            <a href={`https://www.facebook.com/share.php?u=${url}`} target='_blank' rel='noopener noreferrer'>
+            <a href={`https://www.facebook.com/share.php?u=${url}`} target='_blank' rel='noopener noreferrer' className='link-icon'>
               <Facebook color='#2A4FA1' size={32} />
             </a>
-            <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}`} target='_blank' rel='noopener noreferrer'>
+            <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}`} target='_blank' rel='noopener noreferrer' className='link-icon'>
               <Linkedin color='#2A4FA1' size={32} />
             </a>
           </footer>

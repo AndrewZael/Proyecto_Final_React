@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import ItemMenu from './ItemMenu';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useContext } from 'react';
@@ -21,10 +21,6 @@ const Header = () => {
     setFilteredList
   } = useContext(Context);
   const location = useLocation();
-
-  /*const checkScrollY = () => {
-    window.scrollY >= 65 ? setHead(CLASS) : setHead('');
-  }*/
 
   // Cierra sesión
   const logout = () => {
@@ -66,19 +62,19 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`main-header row mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 bg-secondary border-bottom`}>
-      <nav className='col-6'>
+    <header className={`main-header row py-3 mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 bg-secondary border-bottom`}>
+      <nav className='navigation col-6'>
         <ul className='p-0 m-0 list-unstyled d-flex'>
             <li className='me-3 align-items-center d-none d-sm-flex'>
               <span className='bg-light p-3 px-5 rounded'></span>
             </li>
-            <li><Link to='/' className='text-decoration-none text-light py-4 d-inline-block me-3 small'>
+            <li><NavLink to='/' className='text-decoration-none text-light d-inline-block me-3 small'>
                 HOME
-                </Link>
+                </NavLink>
             </li>
-            <li><Link to='/publicaciones' className='text-decoration-none text-light py-4 d-inline-block small'>
+            <li><NavLink to='/publicaciones' className='text-decoration-none text-light d-inline-block small'>
                 PUBLICACIONES
-                </Link>
+                </NavLink>
             </li>
         </ul>
       </nav>
