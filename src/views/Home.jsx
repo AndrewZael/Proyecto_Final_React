@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import HeadSection from '../components/HeadSection';
 import Card from '../components/Card';
 import CardInfo from '../components/CardInfo';
 import Login from '../components/Login';
 import Animation from '../components/Animation';
 import { NavLink } from 'react-router-dom';
-import { useContext } from 'react';
 import Context from '../contexts/Context';
 import Benefits from '../shared/Benefits';
 
 const Home = () => {
-  const { userLogin } = useContext(Context);
+  const { userLogin, publications } = useContext(Context);
+  const [latestPosts, setLatestPosts] = useState([]);
+
+  useEffect(() => {
+     const postsHome = publications.slice(0, 2);
+     setLatestPosts([...postsHome]);
+  }, [publications]);
+
   return (
     <>
     <Animation />
@@ -34,15 +40,13 @@ const Home = () => {
 
       <section title='Publicaciones' className='row mb-5 pb-5 justify-content-around gap-4'>
         <HeadSection title='Lorem ipsum dolor sit amet' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.' />
-          <div className='col-10 col-md-5 col-lg-4 col-xl-3 mb-5 mb-xl-0'>
-            <Card home={true} />
-          </div>
-          <div className='col-10 col-md-5 col-lg-4 col-xl-3 mb-5 mb-xl-0'>
-            <Card home={true} />
-          </div>
-          <div className='col-10 col-md-5 col-lg-4 col-xl-3 mb-5 mb-xl-0'>
-            <Card home={true} />
-          </div>
+          {
+            latestPosts.map(post => (
+              <div key={post.publication_id} className='col-10 col-md-5 col-lg-4 col-xl-3 mb-5 mb-xl-0'>
+                <Card home={true} obj={post} />
+              </div>
+            ))
+          }
           <footer className='text-center mt-5'>
              <NavLink to='/publicaciones' className='btn btn-primary rounded-pill py-2 px-4'>VER TODAS</NavLink>
           </footer>
