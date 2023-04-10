@@ -8,7 +8,20 @@ import { useContext } from 'react';
 
 const Card = ({ home = false, obj }) => {
   
-  const { setShowModalContact, user } =  useContext(Context); 
+  const { 
+    setShowModalContact,
+    setShowModalSub, 
+    user,
+    setModalRef } =  useContext(Context);
+
+  const openModal = () => {
+    setModalRef(`${obj.user_id}/${obj.publication_id}`);
+    if(user.subscribed){
+        setShowModalContact(true);
+    }else{
+        setShowModalSub(true);
+    }
+  };
 
   return (
     <article className='custom-card text-primary rounded custom-shadow bg-light position-relative px-0'>
@@ -40,7 +53,7 @@ const Card = ({ home = false, obj }) => {
                     <NavLink to={`/detalle/${obj?.publication_id}`} className='btn btn-sm btn-outline-primary rounded-pill w-100'>
                         MAS INFO
                     </NavLink>
-                    <button onClick={() => setShowModalContact(true)} className='btn btn-sm btn-primary rounded-pill w-100'>
+                    <button onClick={openModal} className='btn btn-sm btn-primary rounded-pill w-100'>
                         CONTACTAR
                     </button>
                 </footer>

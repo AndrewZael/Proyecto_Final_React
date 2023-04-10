@@ -18,10 +18,13 @@ import ProfileNewPost from  './views/ProfileNewPost';
 import Context from './contexts/Context';
 import ModalInfoContact from './components/modals/ModalInfoContact';
 import Feedback from './components/Feedback';
+import ModalSubscription from './components/modals/ModalSubscription';
 
 function App() {
 
   const [showModalContact, setShowModalContact] = useState(false);
+  const [modalRef, setModalRef] = useState('');
+  const [showModalSub, setShowModalSub] = useState(false);
   const [userLogin, setUserLogin] = useState(false);
   const [user, setUser] = useState({});
   const [publications, setPublications] = useState([]);
@@ -35,6 +38,8 @@ function App() {
   const share = {
     showModalContact,
     setShowModalContact,
+    showModalSub,
+    setShowModalSub,
     user,
     setUser,
     userLogin,
@@ -44,6 +49,8 @@ function App() {
     filteredList,
     setFilteredList,
     infoFeedBack,
+    modalRef,
+    setModalRef,
     setInfoFeedBack
   }
 
@@ -53,6 +60,7 @@ function App() {
         <Feedback />
         <ModalInfoContact />
         <BrowserRouter>
+            <ModalSubscription />
             <Header />
             <Routes>
               <Route path='/' element={<Home />} />

@@ -64,6 +64,8 @@ const ProfileNewPost = () => {
     publication.profile_picture = user.profile_picture;
 
     contact.user_id = user.user_id;
+    contact.username = user.username;
+    contact.photo = user.profile_picture;
     contact.publication_id = idRef;
 
     setPublication(publication);
