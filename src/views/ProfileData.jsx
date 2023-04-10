@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Form from 'react-bootstrap/Form';
 import Icon from '../components/Icon';
 import HeadProfile from '../components/HeadProfile';
-import { useContext } from 'react';
 import Context from '../contexts/Context';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getDatabase, set, ref as refDatabase } from "firebase/database";
-import { useState } from 'react';
-import { useEffect } from 'react';
 import Preload from '../components/Preload';
+import openToast from '../shared/OpenToast';
+import userPlaceholder from '../assets/img/user.png';
  
 const ProfileData = () => {
 
-   const { user, setUser } = useContext(Context);
+   const { user, setUser, setInfoFeedBack } = useContext(Context);
    const [file, setFile] = useState('');
    const [preload, setPreload] = useState(false);
 
@@ -28,8 +27,17 @@ const ProfileData = () => {
     setPreload(true);
     uploadBytes(userImageRef, file).then(snapshot => {
         getImageUrl();
-      }).catch(error => { 
-        console.error(error);
+        setInfoFeedBack(openToast(
+            'success',
+            '¡Imagen subida con éxito!',
+            'Tu nueva imagen ya está disponible en tu perfil.'
+        ));
+      }).catch(() => { 
+        setInfoFeedBack(openToast(
+            'danger',
+            '¡Ups! Lo sentimos',
+            'Un error ha ocurrido al cargar tu archivo, por favor inténtalo nuevamente.'
+        ));
         setPreload(false);
       });
   };
@@ -69,8 +77,17 @@ const ProfileData = () => {
         setUser({...user});
         set(refDatabase(getDatabase(), `users/${user.user_id}`), user).then(() => {
             setPreload(false);
-        }).catch(error => {
-            console.error(error);
+            setInfoFeedBack(openToast(
+                'success',
+                '¡Perfil actualizado!',
+                'La información de tu perfil se actualizó correctamente.'
+            ));
+        }).catch(() => {
+            setInfoFeedBack(openToast(
+                'danger',
+                '¡Ups! Lo sentimos',
+                'No hemos logrado actualizar tu perfil, por favor inténtalo nuevamente.'
+            ));
         });
     }
   };
@@ -81,7 +98,10 @@ const ProfileData = () => {
         <Form onSubmit={updateProfile}>
             <div className='photo-profile text-center mb-4 pb-4 border-bottom flex-column d-flex align-items-center'>
                 <label htmlFor='file' className='col-12 fw-bold mb-1 text-dark pointer-event-none'>Foto de perfil</label>
-                <span className='bg bg-secondary position-relative rounded-circle d-inline-block' style={{ backgroundImage: `url(${user.profile_picture})` }}>
+                <span className='bg bg-secondary position-relative rounded-circle d-inline-block' style={{ backgroundImage: `url(${
+                    [undefined, null, ''].includes(user.profile_picture) ? 
+                        userPlaceholder : user.profile_picture
+                })` }}>
                     { !preload ?
                         <button onClick={() => getFile()} title='Foto de perfil' type='button' className='btn btn-sm btn-light rounded-circle position-absolute shadow-sm border-soft'>
                             <Icon icon='add_photo_alternate' />

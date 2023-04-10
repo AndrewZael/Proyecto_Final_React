@@ -18,7 +18,6 @@ const Fav = ({ id, fav = false }) => {
     if(!favExists){
         user.favorites.unshift(publication);
         setInfoFeedBack(openToast(
-          true, 
           'success', 
           '¡Operación exitosa!', 
           `La publicación de ${publications.find(p => p.
@@ -26,7 +25,6 @@ const Fav = ({ id, fav = false }) => {
     }else{
         user.favorites = user.favorites.filter(f => f.publication_id !== id);
         setInfoFeedBack(openToast(
-          true, 
           'success', 
           '¡Operación exitosa!', 
           `La publicación de ${publications.find(p => p.

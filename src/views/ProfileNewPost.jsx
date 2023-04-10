@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import HeadProfile from '../components/HeadProfile';
 import Form from 'react-bootstrap/Form';
 import Context from '../contexts/Context';
-import { useState } from 'react';
 import Countries from '../shared/Countries';
 import Specialties from '../shared/Specialties';
-import { getDatabase, ref, set, push, query, orderByChild, equalTo, get } from "firebase/database";
+import { getDatabase, ref, set, push, query, orderByChild, get } from "firebase/database";
 import Preload from '../components/Preload';
+import openToast from '../shared/OpenToast';
 
 const ProfileNewPost = () => {
   const { 
@@ -14,7 +14,8 @@ const ProfileNewPost = () => {
     setUser,
     publications, 
     setPublications,
-    setFilteredList 
+    setFilteredList,
+    setInfoFeedBack
   } = useContext(Context);
   const [citeLength, setCiteLength] = useState(0);
   const [aboutYouLength, setAboutYouLength] = useState(0); 
@@ -91,9 +92,17 @@ const ProfileNewPost = () => {
       set(ref(db, `publications/${idRef}`), publication),
       set(ref(db, `contacts/${user.user_id}/${idRef}`), contact)
     ]).then(() => {
-
-    }).catch(error => {
-      console.error(error);
+      setInfoFeedBack(openToast(
+        'success',
+        '¡Publicación creada con éxito!',
+        'Tu publicación ha sido creada exitosamente.'
+      ));
+    }).catch(() => {
+      setInfoFeedBack(openToast(
+        'danger',
+        '¡Ups! Lo sentimos',
+        'No hemos podido agregar tu publicación, por favor inténtalo nuevamente.'
+      ));
     }).finally(() => setUploadingForm(false));
 
   };

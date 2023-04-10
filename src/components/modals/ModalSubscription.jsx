@@ -26,7 +26,6 @@ const ModalSubscription = () => {
             setShowModalSub(false);
             setShowModalContact(true);
             setInfoFeedBack(openToast(
-                true,
                 'success',
                 '¡Pago realizado con éxito!',
                 'Tu pago ha sido confirmado, ya puedes disfrutar de **** PRO'

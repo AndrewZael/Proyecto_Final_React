@@ -1,4 +1,4 @@
-const openToast = (show, bg, title, message) => {
-    return { show, bg, title, message }
+const openToast = (bg, title, message) => {
+    return { show: true, bg, title, message }
 }
 export default openToast;

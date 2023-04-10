@@ -13,7 +13,7 @@ const Card = ({ home = false, obj }) => {
   return (
     <article className='custom-card text-primary rounded custom-shadow bg-light position-relative px-0'>
         <header className={`text-center ${home ? 'header-home-card d-flex position-relative' : ''}`}>
-            <div role="img" className={`photo-user-card rounded-circle shadow-sm bg-secondary border border-soft custom-shadow ${!home ? 'position-absolute start-0 end-0 mx-auto' : 'position-relative'}`} style={{ backgroundImage: `url(${obj?.profile_picture})` }}></div>
+            <div role="img" className={`bg photo-user-card rounded-circle shadow-sm bg-secondary border border-soft custom-shadow ${!home ? 'position-absolute start-0 end-0 mx-auto' : 'position-relative'}`} style={{ backgroundImage: `url(${obj?.profile_picture})` }}></div>
             <div className={`${!home ? 'mb-1 pt-5' : 'text-start ms-2'}`}>
                 <h2 className='h3 fw-bold my-1'>{ obj?.username }</h2>
                 <h3 className='h5 mb-0'>{ obj?.country.label }</h3>
