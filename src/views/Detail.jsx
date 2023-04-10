@@ -6,6 +6,7 @@ import Facebook from '../components/icons-svg/Facebook';
 import Linkedin from '../components/icons-svg/Linkedin';
 import { useLocation, useParams } from 'react-router-dom';
 import Context from '../contexts/Context';
+import ContactButton from '../components/ContactButton';
 
 const Detail = () => {
   const { publications } = useContext(Context);
@@ -34,9 +35,7 @@ const Detail = () => {
                 <p>{ publication?.about_you }</p>
                 <footer className='text-end pb-3'>
                    <Value val={publication?.value} sizeData={3.156} sizeCode={1.75} sizeHrs={1.3} />
-                   <button className='btn btn-primary btn-sm rounded-pill px-4 py-2 mt-3'>
-                      CONTACTAR
-                   </button>
+                   <ContactButton obj={publication} className='px-4 py-2 mt-3' />
                 </footer>
              </div>
           </div>
