@@ -50,7 +50,7 @@ const ProfileNewPost = () => {
         publication.skills = skillsValue;
       }
     });
-  }, []);
+  }, [publication]);
 
   const submit = e => {
 

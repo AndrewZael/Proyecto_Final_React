@@ -20,7 +20,7 @@ const Detail = () => {
   useEffect(() => {
     const post = publications.find(p => p.publication_id === id);
     setpublication(post);
-  },[publications]);
+  },[id, publications]);
 
   return (
     <main>

@@ -20,15 +20,13 @@ const Fav = ({ id, fav = false }) => {
         setInfoFeedBack(openToast(
           'success', 
           '¡Operación exitosa!', 
-          `La publicación de ${publications.find(p => p.
-          publication_id === id)?.username} ha sido agregada a tus favoritos.`));
+          `La publicación de ${publications.find(p => p.publication_id === id)?.username} ha sido agregada a tus favoritos.`));
     }else{
         user.favorites = user.favorites.filter(f => f.publication_id !== id);
         setInfoFeedBack(openToast(
           'success', 
           '¡Operación exitosa!', 
-          `La publicación de ${publications.find(p => p.
-          publication_id === id)?.username} ha sido removida de tus favoritos.`));
+          `La publicación de ${publications.find(p => p.publication_id === id)?.username} ha sido removida de tus favoritos.`));
     }
     setUser(user);
     set(ref(getDatabase(), `users/${user.user_id}`), user).then(() => {

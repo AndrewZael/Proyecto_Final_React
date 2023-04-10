@@ -9,7 +9,7 @@ const LoginPage = () => {
   const { userLogin } = useContext(Context);
   useEffect(() => {
      userLogin && navigate('/');
-  }, [userLogin]);
+  }, [navigate, userLogin]);
 
   return (
     <>

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import google from '../assets/img/google.svg';
 import { getAuth, signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { getDatabase, ref, set, onValue, get } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 import { useContext } from 'react';
 import Context from '../contexts/Context';
 import { useState } from 'react';
@@ -25,7 +25,6 @@ const Login = ({ only = false }) => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then((result) => {
         const user = result.user;
-        const userData = 
         getUserData(user).then(userData => {
             if(userData.user_id === user.uid){
                 console.log('usuario existe');

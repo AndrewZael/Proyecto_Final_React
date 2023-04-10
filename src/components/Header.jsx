@@ -52,7 +52,7 @@ const Header = () => {
         location.pathname.includes('perfil') && navigate('/');
        }
     })
-  }, [location, auth, navigate, setUser, setUserLogin]);
+  }, [db, location, auth, navigate, setUser, setUserLogin]);
 
   // Actualiza la información de publicaciones
   useEffect(() => {
@@ -66,7 +66,7 @@ const Header = () => {
         setPublications(publications);
         setFilteredList(publications);
       });
-  }, []);
+  }, [db]);
 
   return (
     <header className={`main-header row py-3 mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 bg-secondary border-bottom`}>

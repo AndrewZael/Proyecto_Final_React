@@ -19,7 +19,6 @@ const ModalInfoContact = () => {
       get(ref(getDatabase(), `contacts/${modalRef}`)).then(snapshot => {
          setInfo(snapshot.val());
       });
-      console.log(info);
   }, [modalRef, showModalContact]);
 
   return (
