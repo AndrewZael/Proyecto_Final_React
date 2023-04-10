@@ -137,6 +137,17 @@ html{
 /*DETALLE*/
 .user-photo-detail{
     height: 400px;
+    span{
+        right: 0;
+        bottom: 4.5rem;
+        height: 48px;
+        width: 48px;
+        span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 }
 /*DETALLE*/
 

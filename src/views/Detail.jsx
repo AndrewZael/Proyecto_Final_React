@@ -7,9 +7,11 @@ import Linkedin from '../components/icons-svg/Linkedin';
 import { useLocation, useParams } from 'react-router-dom';
 import Context from '../contexts/Context';
 import ContactButton from '../components/ContactButton';
+import Fav from '../components/Fav';
+import Share from '../components/Share';
 
 const Detail = () => {
-  const { publications } = useContext(Context);
+  const { publications, user } = useContext(Context);
   const { id } = useParams();
   const [publication, setpublication] = useState({});
   const location = useLocation();
@@ -26,7 +28,14 @@ const Detail = () => {
        <section title={publication?.username} className='col-12 col-sm-10 col-lg-9 col-xl-7 mx-auto min-vh-100 py-5 px-4'>
           <div className='row mb-4 pb-4 border-bottom'>
              <div className='col-12 col-md-4'>
-                <div role='img' className='user-photo-detail w-100 rounded-circle bg mx-auto mb-4 border-soft border shadow-sm' style={{ backgroundImage: `url(${publication?.profile_picture})` }}></div>
+                <div role='img' className='user-photo-detail w-100 rounded-circle bg mx-auto mb-4 border-soft border shadow-sm position-relative' style={{ backgroundImage: `url(${publication?.profile_picture})` }}>
+                    <span className='position-absolute d-flex align-items-center justify-content-center bg-light rounded-circle border-soft border'>
+                      <Fav 
+                        id={publication?.publication_id}
+                        fav={user.favorites?.some(f => f.publication_id === publication?.publication_id)}
+                       />
+                    </span>
+                </div>
              </div>
              <div className='col-12 col-md-8'>
                 <h2 className='fw-bold text-primary'>{ publication?.username }</h2>
@@ -55,12 +64,13 @@ const Detail = () => {
           </div>
           <footer className='my-4 my-md-5 pt-4 border-top text-center'>
             <span className='text-gray d-block mb-2'>Compartir perfil en</span>
-            <a href={`https://www.facebook.com/share.php?u=${url}`} target='_blank' rel='noopener noreferrer' className='link-icon'>
+            <a href={`https://www.facebook.com/share.php?u=${url}`} target='_blank' rel='noopener noreferrer' className='link-icon d-inline-block' title='Compartir en facebook'>
               <Facebook color='#2A4FA1' size={32} />
             </a>
-            <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}`} target='_blank' rel='noopener noreferrer' className='link-icon'>
+            <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}`} target='_blank' rel='noopener noreferrer' className='link-icon d-inline-block' title='Compartir en linkedin'>
               <Linkedin color='#2A4FA1' size={32} />
             </a>
+            <Share id={publication.publication_id} />
           </footer>
        </section>
     </main>
