@@ -28,7 +28,7 @@ const Card = ({ home = false, obj }) => {
                     <div className='text-end col-6'>
                         <Fav id={obj?.publication_id} 
                         fav={user.favorites?.some(f => f.publication_id === obj?.publication_id)} />
-                        <Share />
+                        <Share id={obj?.publication_id} />
                     </div>
                 </header>
                 <div className='text-dark mt-4'>
