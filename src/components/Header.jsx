@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import Context from '../contexts/Context';
 import { getAuth } from 'firebase/auth';
 import { getDatabase, ref, onValue } from 'firebase/database';
+import openToast from '../shared/OpenToast';
 
 const Header = () => {
 
@@ -18,7 +19,8 @@ const Header = () => {
     userLogin, 
     setUserLogin,
     setPublications,
-    setFilteredList
+    setFilteredList,
+    setInfoFeedBack
   } = useContext(Context);
   const location = useLocation();
 
@@ -28,6 +30,11 @@ const Header = () => {
        setUser({});
        setUserLogin(false);
        navigate('/');
+       setInfoFeedBack(openToast(
+        'success',
+        'Sesión cerrada',
+        'Has cerrado sesión, con éxito, vuelve pronto.'
+       ))
     }).catch(() => {
        
     });

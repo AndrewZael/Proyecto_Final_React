@@ -13,7 +13,7 @@ const Home = () => {
   const [latestPosts, setLatestPosts] = useState([]);
 
   useEffect(() => {
-     const postsHome = publications.slice(0, 2);
+     const postsHome = publications.slice(0, 3);
      setLatestPosts([...postsHome]);
   }, [publications]);
 
