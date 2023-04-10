@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Instagram from '../components/icons-svg/Instagram';
 import Facebook from '../components/icons-svg/Facebook';
 import Linkedin from '../components/icons-svg/Linkedin';
+import Context from '../contexts/Context';
 
 const Footer = () => {
+  const { userLogin } = useContext(Context);   
   return (
     <footer className='bg-primary px-3 py-4'>
        <div className='row mx-0'>
@@ -20,14 +22,17 @@ const Footer = () => {
                         <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>PUBLICACIONES</a></li>
                     </ul>
                 </nav>
-                <nav className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
-                    <ul className='text-light'>
-                        <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>MI PERFIL</a></li>
-                        <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>MIS FAVORITOS</a></li>
-                        <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>MIS PUBLICACIONES</a></li>
-                        <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>NUEVA PUBLICACIÓN</a></li>
-                    </ul>
-                </nav>
+                {
+                    userLogin ? 
+                    <nav className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
+                        <ul className='text-light'>
+                            <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>MI PERFIL</a></li>
+                            <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>MIS FAVORITOS</a></li>
+                            <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>MIS PUBLICACIONES</a></li>
+                            <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>NUEVA PUBLICACIÓN</a></li>
+                        </ul>
+                    </nav> : null
+                }
                 <nav className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
                     <ul className='text-light'>
                         <li><a href='https://www.google.com/' className='text-light text-decoration-none small'>CONVIERTETE EN PUBLICADOR</a></li>
@@ -38,7 +43,10 @@ const Footer = () => {
                 <nav className='d-flex flex-column flex-sm-row flex-lg-column flex-xl-row gap-2 mb-4 mb-sm-0'>
                     <a href='https://www.google.com/' className='btn btn-sm px-3 rounded-pill btn-outline-light'>REGISTRATE</a>
                     <a href='https://www.google.com/' className='btn btn-sm px-3 rounded-pill btn-outline-light'>INGRESA</a>
-                    <a href='https://www.google.com/' className='btn btn-sm px-3 rounded-pill btn-auxiliar text-light'>CONVIERTETE EN PRO</a>
+                    {
+                        userLogin ? 
+                        <a href='https://www.google.com/' className='btn btn-sm px-3 rounded-pill btn-auxiliar text-light'>CONVIERTETE EN PRO</a> : null
+                    }
                 </nav>
                 <nav className='d-flex gap-2 mb-4 mb-sm-0'>
                     <a href='https://www.google.com/'><Instagram color="#fcfcfc" size={32} /></a>

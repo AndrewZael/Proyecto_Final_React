@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Animation from '../components/Animation';
 import Login from '../components/Login';
+import Context from '../contexts/Context';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const { userLogin } = useContext(Context);
+  useEffect(() => {
+     userLogin && navigate('/');
+  }, [userLogin]);
+
   return (
     <>
     <Animation />

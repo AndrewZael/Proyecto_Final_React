@@ -59,6 +59,9 @@ html{
 }
 .info-card{
     z-index: 1;
+    &>div{
+        min-height: 150px;
+    }
 }
 .decoration-card{
     height: 100%;

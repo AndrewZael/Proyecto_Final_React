@@ -27,7 +27,6 @@ const Login = ({ only = false }) => {
         const user = result.user;
         const userData = 
         getUserData(user).then(userData => {
-            console.log(userData);
             if(userData.user_id === user.uid){
                 console.log('usuario existe');
                 setUser(userData);
