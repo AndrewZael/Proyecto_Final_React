@@ -75,6 +75,7 @@ html{
     border-right: 1px solid $gray-x-light;
     form{
         top: 5rem;
+        height: calc(100vh - 100px);
     }
 }
 /*FILTERS*/

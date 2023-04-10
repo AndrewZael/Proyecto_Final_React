@@ -81,7 +81,7 @@ const ProfileNewPost = () => {
     // Filtros
     const filterCountriesRef = query(ref(db, 'filters/countries'), orderByChild('name'));
     const filterSkillsRef = query(ref(db, 'filters/skills'), orderByChild('name'));
-    // checkFilterExists(filterCountriesRef, 'filters/countries', publication.country);
+    checkFilterExists(filterCountriesRef, 'filters/countries', publication.country);
     checkFilterExists(filterSkillsRef, 'filters/skills', publication.skills);
 
     Promise.all([
@@ -97,24 +97,47 @@ const ProfileNewPost = () => {
   };
 
   const checkFilterExists = (reference, strRef, data) => {
-    let exists = false;
-    console.log(data);
-    get(reference).then(snapshot => {
-      snapshot.forEach(childSnapshot => {
-        console.log(childSnapshot.val());
-        const child = childSnapshot.val();
-        /*if(child.name.toLowerCase() === obj.name){
-            exists = true;
-        }*/
+    if(Array.isArray(data)){
+
+      get(reference).then(snapshot => {
+        data.forEach(newSkill => {
+          let exists = false;
+          snapshot.forEach(child=> {
+            const skill = child.val();
+            if(skill.value === newSkill.value) {
+              exists = true;
+            }
+          });
+
+          if(!exists){
+            push(ref(db, strRef), {
+              label: newSkill.label,
+              value: newSkill.value
+            });
+          }
+        });
       });
 
-      if(!exists){
-       /*push(ref(db, strRef), {
-         label: obj.label,
-         name: obj.name
-       });*/
-      }
-   });
+    }else{
+
+      get(reference).then(snapshot => {
+        let exists = false;
+        snapshot.forEach(childSnapshot => {
+          const child = childSnapshot.val();
+          if(child.name.toLowerCase() === data.name){
+              exists = true;
+          }
+        });
+  
+        if(!exists){
+         push(ref(db, strRef), {
+           label: data.label,
+           name: data.name
+         });
+        }
+     });
+
+    }
   };
 
   return (
