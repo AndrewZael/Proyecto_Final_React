@@ -3,7 +3,7 @@ import ItemMenu from './ItemMenu';
 
 const MenuPerfil = () => {
   return (
-    <nav className='menu-profile rounded mb-4 mb-md-0'>
+    <nav className='menu-profile rounded mb-4 mb-md-0 position-sticky'>
         <ul className='list-unstyled bg-transparent my-2 d-flex flex-md-column flex-wrap justify-content-center justify-content-md-start'>
             <ItemMenu responsive={true} label='Mis datos' icon='person' to='perfil/mis-datos' />
             <ItemMenu responsive={true} label='Mis favoritos' icon='favorite' to='perfil/favoritos' />
