@@ -17,7 +17,8 @@ const ContactButton = ({ obj, className = 'w-100' }) => {
     };
 
   return (
-    <button onClick={openModal} className={`btn btn-sm btn-primary rounded-pill ${className}`}>
+    <button onClick={openModal} className={`btn btn-sm btn-primary rounded-pill ${className}`} 
+    title={`Contactar con ${obj?.username}`}>
         CONTACTAR
     </button>
   )

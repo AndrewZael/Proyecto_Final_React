@@ -94,8 +94,8 @@ const ProfileData = () => {
 
   return (
     <>
-        <HeadProfile title='Mis datos' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore' />
-        <Form onSubmit={updateProfile}>
+        <HeadProfile title='Mis datos' subtitle='Aquí puedes ver y actualizar tu información personal. Desde cambiar tu imagen de perfil hasta actualizar tus datos de contacto. Asegúrate de que tu información siempre esté actualizada.' />
+        <Form onSubmit={updateProfile} className='mt-4'>
             <div className='photo-profile text-center mb-4 pb-4 border-bottom flex-column d-flex align-items-center'>
                 <label htmlFor='file' className='col-12 fw-bold mb-1 text-dark pointer-event-none'>Foto de perfil</label>
                 <span className='bg bg-secondary position-relative rounded-circle d-inline-block' style={{ backgroundImage: `url(${

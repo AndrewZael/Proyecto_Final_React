@@ -37,7 +37,8 @@ const Card = ({ home = false, obj }) => {
                 </div>
 
                 <footer className='d-flex justify-content-between gap-2 mt-4'>
-                    <NavLink to={`/detalle/${obj?.publication_id}`} className='btn btn-sm btn-outline-primary rounded-pill w-100'>
+                    <NavLink to={`/detalle/${obj?.publication_id}`} className='btn btn-sm btn-outline-primary rounded-pill w-100' 
+                    title={`Más información de ${obj?.username}`}>
                         MAS INFO
                     </NavLink>
                     <ContactButton obj={obj} />

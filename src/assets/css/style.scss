@@ -50,11 +50,13 @@ html,body{
 /*MENUS*/
 .navigation{
     a{
-        text-decoration: none;
-        &:hover,
-        &.active{
-            border-bottom: 1px dotted;
+        &:not(.not-menu){
+            text-decoration: none;
             padding-bottom: .15rem;
+            &:hover,
+            &.active{
+                border-bottom: 1px dotted;
+            }
         }
     }
 }

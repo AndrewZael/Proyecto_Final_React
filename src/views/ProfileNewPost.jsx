@@ -153,7 +153,7 @@ const ProfileNewPost = () => {
 
   return (
     <>
-        <HeadProfile title='Nueva publicación' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore' />
+        <HeadProfile title='Nueva publicación' subtitle='Crea una nueva publicación donde destaques todas tus habilidades y competencias.' />
         <Form onSubmit={submit}>
 
             <Form.Group className='mb-4'>

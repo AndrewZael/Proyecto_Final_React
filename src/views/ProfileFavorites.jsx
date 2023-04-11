@@ -8,7 +8,7 @@ const ProfileFavorites = () => {
   const { user } = useContext(Context);
   return (
     <>
-        <HeadProfile title='Mis favoritos' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore' />
+        <HeadProfile title='Mis favoritos' subtitle='En esta sección puedes encontrar todas las publicaciones que has guardado y contactar más rápido con estos profesionales.' />
        {
          user.favorites?.length === 0 || user.favorites === undefined ? 
          <AlertMessage icon='sentiment_dissatisfied' text='No has agregado favoritos a tu lista' variant='info' /> 

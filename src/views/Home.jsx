@@ -7,6 +7,7 @@ import Animation from '../components/Animation';
 import { NavLink } from 'react-router-dom';
 import Context from '../contexts/Context';
 import Benefits from '../shared/Benefits';
+import imagotipo from  '../assets/img/imagotipo.svg';
 
 const Home = () => {
   const { userLogin, publications } = useContext(Context);
@@ -24,11 +25,11 @@ const Home = () => {
       <section title='Principal' className={`row justify-content-between position-relative ${userLogin ? 'main-home-login pt-5 pb-3' : 'py-5'}`}>
         <div className={`col-11 mx-auto p-4 bg-light rounded ${userLogin ? 'd-flex flex-column justify-content-center shadow-sm' : 'col-md-6'}`}>
           <div className={userLogin ? 'col-md-9 col-xxl-10 mx-auto text-center' : 'col-12'}>
-            <span className='bg-secondary p-5 d-inline-block rounded-circle'></span>
-            <h1 className='fw-bold text-xxl'>
+            <img src={imagotipo} alt='Community' width={110} />
+            <h1 className='fw-bold text-xxl mt-4'>
               Posiciona tu negocio rápidamente en cualquier país.
             </h1>
-            <p className='h5 fw-light'>Contacta con profesionales digitales de todo el mundo y has que tu negocio sea visible.</p>
+            <p className='h3 fw-light'>Contacta con profesionales digitales de todo el mundo y has que tu negocio sea visible.</p>
           </div>
         </div>
         { !userLogin ?
@@ -39,7 +40,7 @@ const Home = () => {
       </section>
 
       <section title='Publicaciones' className='row mb-5 pb-5 justify-content-around gap-4'>
-        <HeadSection title='Lorem ipsum dolor sit amet' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.' />
+        <HeadSection title='Últimas publicaciones' subtitle='Descubre nuestras últimas publicaciones y novedades en esta sección..' />
           {
             latestPosts.map(post => (
               <div key={post.publication_id} className='col-10 col-md-5 col-lg-4 col-xl-3 mb-5 mb-xl-0'>
@@ -53,7 +54,7 @@ const Home = () => {
         </section>
 
         <section title='Beneficios' className='mb-4 py-4 mx-auto col-11 col-lg-7 justify-content-around gap-4'>
-        <HeadSection title='Lorem ipsum dolor sit amet' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.' />
+        <HeadSection title='Nuestras competencias' subtitle='Conoce nuestras habilidades y competencias.' />
           <div className='row pt-5'>
             { Benefits.map(b => (
                 <div key={b.icon} className='col-12 col-sm-6 mb-4 pb-5'>

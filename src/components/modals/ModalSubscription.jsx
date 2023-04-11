@@ -44,7 +44,8 @@ const ModalSubscription = () => {
             <Modal.Header className='d-flex align-items-start border-0 pb-0' closeButton>
                 <header className='d-flex flex-column align-items-center w-100 pt-4'>
                     <b>Suscríbete a **** PRO</b>
-                    <span className='p-5 bg-secondary rounded-circle mb-2 mt-4'></span>
+                    <span className='p-5 bg bg-secondary rounded-circle mb-2 mt-4'
+                    style={{ backgroundImage: `url(${''})` }}></span>
                     <p className='mb-0 text-center'>
                     Contactar con todos <br />nuestros profesionales.
                     </p>

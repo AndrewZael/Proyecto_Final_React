@@ -7,6 +7,7 @@ import Context from '../contexts/Context';
 import { getAuth } from 'firebase/auth';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import openToast from '../shared/OpenToast';
+import isotipo from '../assets/img/isotipo.svg';
 
 const Header = () => {
 
@@ -76,9 +77,11 @@ const Header = () => {
   return (
     <header className={`main-header row py-3 mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 bg-secondary border-bottom`}>
       <nav className='navigation col-6'>
-        <ul className='p-0 m-0 list-unstyled d-flex'>
+        <ul className='p-0 m-0 list-unstyled d-flex align-items-center'>
             <li className='me-3 align-items-center d-none d-sm-flex'>
-              <span className='bg-light p-3 px-5 rounded'></span>
+              <Link to='/' className='not-menu'>
+                  <img src={isotipo} alt='Community' width={60} />
+              </Link>
             </li>
             <li><NavLink to='/' className='text-decoration-none text-light d-inline-block me-3 small'>
                 HOME
@@ -108,7 +111,7 @@ const Header = () => {
               <ItemMenu label="Mis favoritos" icon="favorite" to='perfil/favoritos' />
               <ItemMenu label="Mis publicaciones" icon="article" to='perfil/mis-publicaciones' />
               <ItemMenu label="Nueva publicación" icon="post_add" to='perfil/nueva-publicacion' />
-              <button onClick={logout} className='btn d-flex text-decoration-none px-3 py-2 text-nowrap text-gray null w-100'>
+              <button onClick={logout} className='btn d-flex text-decoration-none px-3 py-2 text-nowrap text-gray null w-100' title='Salir'>
                 <span className="material-icons-outlined me-2">logout</span> 
                 <span>Salir</span>
               </button>

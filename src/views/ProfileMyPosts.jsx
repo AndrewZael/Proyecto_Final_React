@@ -10,7 +10,7 @@ const ProfileMyPosts = () => {
   const { user } = useContext(Context);
   return (
     <>
-        <HeadProfile title='Mis publicaciones' subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore' />
+        <HeadProfile title='Mis publicaciones' subtitle='Aquí puedes encontrar todas tus publicaciones que has creado durante el tiempo.' />
         {
           user.publications?.length === 0 || user.publications === undefined ?
           <> 

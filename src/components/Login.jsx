@@ -82,7 +82,7 @@ const Login = ({ only = false }) => {
   return (
     <section title='Login' className={`py-3 px-4 rounded border bg-light position-relative w-100 ${only && 'shadow border-primary'}`}>
         <header className='text-center mb-4'>
-            <span className='p-4 bg-secondary rounded-circle d-inline-block'></span>
+            <span class="material-icons-outlined h1 mb-0">face</span>
             <span className='fw-bold d-block'>Ingresa con tu cuenta</span>
         </header>
         <form>
