@@ -22,7 +22,7 @@ const ModalInfoContact = () => {
   }, [modalRef, showModalContact]);
 
   return (
-    <Modal show={showModalContact} onHide={handleClose} centered>
+    <Modal show={showModalContact} onHide={handleClose} centered backdrop='static'>
         <Modal.Header className='d-flex align-items-start border-0 pb-0' closeButton>
           <header className='d-flex flex-column align-items-center w-100 pt-4'>
             <span className='p-5 bg bg-secondary rounded-circle mb-2' 

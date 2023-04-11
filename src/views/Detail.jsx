@@ -11,7 +11,7 @@ import Fav from '../components/Fav';
 import Share from '../components/Share';
 
 const Detail = () => {
-  const { publications, user } = useContext(Context);
+  const { publications, userLogin, user } = useContext(Context);
   const { id } = useParams();
   const [publication, setpublication] = useState({});
   const location = useLocation();
@@ -29,12 +29,14 @@ const Detail = () => {
           <div className='row mb-4 pb-4 border-bottom'>
              <div className='col-12 col-md-4'>
                 <div role='img' className='user-photo-detail w-100 rounded-circle bg mx-auto mb-4 border-soft border shadow-sm position-relative' style={{ backgroundImage: `url(${publication?.profile_picture})` }}>
+                  { userLogin ?
                     <span className='position-absolute d-flex align-items-center justify-content-center bg-light rounded-circle border-soft border'>
                       <Fav 
                         id={publication?.publication_id}
                         fav={user.favorites?.some(f => f.publication_id === publication?.publication_id)}
                        />
-                    </span>
+                    </span> : null
+                  }
                 </div>
              </div>
              <div className='col-12 col-md-8'>

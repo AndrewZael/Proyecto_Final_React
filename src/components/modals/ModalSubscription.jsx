@@ -38,7 +38,7 @@ const ModalSubscription = () => {
   }
 
   return (
-    <Modal show={showModalSub} onHide={handleClose} centered>
+    <Modal show={showModalSub} onHide={handleClose} centered backdrop='static'>
         {
             !preload ? 
             <Modal.Header className='d-flex align-items-start border-0 pb-0' closeButton>
@@ -84,9 +84,9 @@ const ModalSubscription = () => {
                 </button>
                 <nav className='mt-4'>
                     <ul className='list-unstyled d-flex justify-content-center gap-3'>
-                        <li><Link to='/registro'>Regístrate</Link></li>
+                        <li><Link to='/registro' onClick={() => setShowModalSub(false)}>Regístrate</Link></li>
                         <span className='text-gray'>|</span>
-                        <li><Link to='/login'>Ingresa</Link></li>
+                        <li><Link to='/login' onClick={() => setShowModalSub(false)}>Ingresa</Link></li>
                     </ul>
                 </nav>
                 </> : 
