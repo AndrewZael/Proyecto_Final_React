@@ -68,6 +68,11 @@ const Header = () => {
       });
   }, [db, setFilteredList, setPublications]);
 
+  // Scroll top
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, [location]);
+
   return (
     <header className={`main-header row py-3 mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 bg-secondary border-bottom`}>
       <nav className='navigation col-6'>

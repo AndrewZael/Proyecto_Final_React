@@ -11,6 +11,10 @@ html{
     overflow-x: hidden;
 }
 
+html,body{
+    scroll-behavior: auto!important;
+}
+
 *{
     &:focus{
         outline: 1px dotted;

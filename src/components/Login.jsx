@@ -86,7 +86,7 @@ const Login = ({ only = false }) => {
             <span className='fw-bold d-block'>Ingresa con tu cuenta</span>
         </header>
         <form>
-            <label htmlFor='email' className='mb-1 small'>Usuario o Email</label>
+            <label htmlFor='email' className='mb-1 small'>Email</label>
             <div className="input-group mb-3">
                 <input type='email' id='email' className="form-control border" placeholder="mail@mail.com" aria-label="Email" autoComplete='email' required
                 onKeyUp={e => setUserEmail(e.target.value)} />
