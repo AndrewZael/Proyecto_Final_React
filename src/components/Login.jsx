@@ -49,14 +49,23 @@ const Login = ({ only = false }) => {
     setPreload(true);
     e.preventDefault();
     signInWithEmailAndPassword(auth, userEmail, userPassword).then(credentials => {
-        const userData = getUserData(credentials.user);
-        if(userData.user_id !== credentials.user.uid){
-            setUser(UserObj(credentials.user));
-            SaveUserDatabase(credentials.user);
-        }else{
-            setUser(userData);
-        }
+        getUserData(credentials.user).then(userData => {
+            if(userData.user_id !== credentials.user.uid){
+                console.log('User 1');
+                console.log(userData);
+                console.log(credentials.user.uid);
+                setUser(UserObj(credentials.user));
+                SaveUserDatabase(credentials.user);
+            }else{
+                console.log('User 2');
+                setUser(userData);
+            }
+        }).catch(error => {
+
+        });
+        
         setUserLogin(true);
+
     }).catch(error => {
         setErrorForm(true);
     }).finally(() => {
@@ -82,7 +91,7 @@ const Login = ({ only = false }) => {
   return (
     <section title='Login' className={`py-3 px-4 rounded border bg-light position-relative w-100 ${only && 'shadow border-primary'}`}>
         <header className='text-center mb-4'>
-            <span class="material-icons-outlined h1 mb-0">face</span>
+            <span className='material-icons-outlined h1 mb-0'>face</span>
             <span className='fw-bold d-block'>Ingresa con tu cuenta</span>
         </header>
         <form>

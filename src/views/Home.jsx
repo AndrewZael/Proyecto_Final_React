@@ -7,7 +7,7 @@ import Animation from '../components/Animation';
 import { NavLink } from 'react-router-dom';
 import Context from '../contexts/Context';
 import Benefits from '../shared/Benefits';
-import imagotipo from  '../assets/img/imagotipo.svg';
+import Imagotipo from '../components/Imagotipo';
 
 const Home = () => {
   const { userLogin, publications } = useContext(Context);
@@ -25,7 +25,7 @@ const Home = () => {
       <section title='Principal' className={`row justify-content-between position-relative ${userLogin ? 'main-home-login pt-5 pb-3' : 'py-5'}`}>
         <div className={`col-11 mx-auto p-4 bg-light rounded ${userLogin ? 'd-flex flex-column justify-content-center shadow-sm' : 'col-md-6'}`}>
           <div className={userLogin ? 'col-md-9 col-xxl-10 mx-auto text-center' : 'col-12'}>
-            <img src={imagotipo} alt='Community' width={110} />
+            <Imagotipo w={150} />
             <h1 className='fw-bold text-xxl mt-4'>
               Posiciona tu negocio rápidamente en cualquier país.
             </h1>

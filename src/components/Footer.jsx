@@ -4,6 +4,7 @@ import Facebook from '../components/icons-svg/Facebook';
 import Linkedin from '../components/icons-svg/Linkedin';
 import Context from '../contexts/Context';
 import { Link, NavLink } from 'react-router-dom';
+import Imagotipo from './Imagotipo';
 
 const Footer = () => {
   const { userLogin } = useContext(Context);   
@@ -11,11 +12,8 @@ const Footer = () => {
     <footer className='bg-primary px-3 py-4'>
        <div className='row mx-0'>
             <div className='col-12 col-lg-8 col-xl-6 row mx-0 mb-4'>
-                <div className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
-                    <span className='bg-light d-flex justify-content-center align-items-center rounded-circle d-inline-block' 
-                    style={{ width: '150px', height: '150px' }}>
-                        LOGO
-                    </span>
+                <div className='col-12 col-sm-6 col-md-3 mb-3 mb-md-0 d-flex align-items-center'>
+                    <Imagotipo color='#FCFCFC' w={100} />
                 </div>
                 <nav className='navigation col-12 col-sm-6 col-md-3 mb-3 mb-md-0'>
                     <ul className='text-light'>

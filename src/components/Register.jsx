@@ -5,7 +5,7 @@ const Register = ({ only }) => {
   return (
     <section title='Regitro' className={`py-3 px-4 rounded border bg-light position-relative w-100 ${only && 'shadow border-primary'}`}>
         <header className='text-center mb-4'>
-            <span class="material-icons-outlined h1 mb-0">add_reaction</span>
+            <span className='material-icons-outlined h1 mb-0'>add_reaction</span>
             <span className='fw-bold d-block'>Crea tu cuenta</span>
         </header>
         <form>

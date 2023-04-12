@@ -34,7 +34,7 @@ const Header = () => {
        setInfoFeedBack(openToast(
         'success',
         'Sesión cerrada',
-        'Has cerrado sesión, con éxito, vuelve pronto.'
+        'Has cerrado sesión con éxito, vuelve pronto.'
        ))
     }).catch(() => {
        

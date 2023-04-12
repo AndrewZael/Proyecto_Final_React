@@ -113,21 +113,21 @@ const ProfileData = () => {
 
             <Form.Group>
                 <Form.Label className='small mb-1 fw-bold'>Nombre de usuario</Form.Label>
-                <Form.Control onKeyUp={e => user.username = e.target.value} placeholder={ user.username || 'Username' } className='py-2' required></Form.Control>
+                <Form.Control defaultValue={user.username} onKeyUp={e => user.username = e.target.value} placeholder='Nombre de usuario' className='py-2' required></Form.Control>
             </Form.Group>
             <div className='row my-3'>
                 <Form.Group className='col-12 col-sm-6 mb-3 mb-sm-0'>
                     <Form.Label className='small mb-1 fw-bold'>Nombre</Form.Label>
-                    <Form.Control onKeyUp={e => user.name = e.target.value} placeholder={user.name || 'Primer nombre'} className='py-2'></Form.Control>
+                    <Form.Control defaultValue={user.name} onKeyUp={e => user.name = e.target.value} placeholder='Primer nombre' className='py-2'></Form.Control>
                 </Form.Group>
                 <Form.Group className='col-12 col-sm-6 '>
                     <Form.Label className='small mb-1 fw-bold'>Apellido</Form.Label>
-                    <Form.Control onKeyUp={e => user.lastname = e.target.value} placeholder={user.lastname || 'Primer apellido'} className='py-2'></Form.Control>
+                    <Form.Control defaultValue={user.lastname} onKeyUp={e => user.lastname = e.target.value} placeholder='Primer apellido' className='py-2'></Form.Control>
                 </Form.Group>
             </div>
             <Form.Group>
                 <Form.Label className='small mb-1 fw-bold'>Email</Form.Label>
-                <Form.Control type='email' placeholder={user.email || 'username@gmail.com'} className='py-2' disabled></Form.Control>
+                <Form.Control type='email' defaultValue={user.email} placeholder='username@gmail.com' className='py-2' disabled={user.provider_Id === 'google.com'}></Form.Control>
             </Form.Group>
 
             { user.provider_Id !== 'google.com' ?
