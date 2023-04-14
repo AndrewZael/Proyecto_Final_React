@@ -1,14 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import google from '../assets/img/google.svg';
-import { getAuth, signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import { useContext } from 'react';
 import Context from '../contexts/Context';
 import { useState } from 'react';
-import UserObj from '../shared/User';
+import userObj from '../shared/User';
 import AlertMessage from './AlertMessage';
 import Preload from './Preload';
+import GoogleButton from './GoogleButton';
 
 const Login = ({ only = false }) => {
   
@@ -21,29 +21,6 @@ const Login = ({ only = false }) => {
 
   const auth = getAuth();
 
-  const LoginGoogle = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider).then((result) => {
-        const user = result.user;
-        getUserData(user).then(userData => {
-            if(userData.user_id === user.uid){
-                console.log('usuario existe');
-                setUser(userData);
-            }else{
-                console.log('Usuario nuevo');
-                setUser(UserObj(user));
-                SaveUserDatabase(user);
-            }
-            setUserLogin(true);             
-        }).catch(() => {
-            
-        });
-
-    }).catch(err => {
-        console.log(err);
-    });
-  }
-
   const LoginEmailPassword = (e) => {
     setErrorForm(false);
     setPreload(true);
@@ -51,19 +28,14 @@ const Login = ({ only = false }) => {
     signInWithEmailAndPassword(auth, userEmail, userPassword).then(credentials => {
         getUserData(credentials.user).then(userData => {
             if(userData.user_id !== credentials.user.uid){
-                console.log('User 1');
-                console.log(userData);
-                console.log(credentials.user.uid);
-                setUser(UserObj(credentials.user));
+                setUser(userObj(credentials.user));
                 SaveUserDatabase(credentials.user);
             }else{
-                console.log('User 2');
                 setUser(userData);
             }
         }).catch(error => {
 
         });
-        
         setUserLogin(true);
 
     }).catch(error => {
@@ -85,7 +57,7 @@ const Login = ({ only = false }) => {
   }
 
   const SaveUserDatabase = (user) => {
-    set(ref(db, `users/${user.uid}`), UserObj(user));
+    set(ref(db, `users/${user.uid}`), userObj(user));
   }
 
   return (
@@ -116,10 +88,7 @@ const Login = ({ only = false }) => {
             <span className='d-block my-2 text-center'>o</span>
 
             { !preload ?
-                <button type='button' onClick={() => LoginGoogle()} className='btn w-100 mb-4'>
-                    <img src={google} alt='Login con Google' className='me-2' />
-                    Login con Google
-                </button> : null
+                <GoogleButton /> : null
             }
 
             <footer className='p-2 border rounded text-center mb-2 bg-white'>

@@ -1,4 +1,4 @@
-const UserObj = (user = {}) => {
+const userObj = (user = {}) => {
     return {
         username: user.displayName || user.email,
         name: '',
@@ -14,4 +14,4 @@ const UserObj = (user = {}) => {
     }
 }
 
-export default UserObj;
+export default userObj;

@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import Animation from '../components/Animation';
 import Register from '../components/Register';
+import { useNavigate } from 'react-router-dom';
+import Context from '../contexts/Context';
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  const { userLogin } = useContext(Context);
+  useEffect(() => {
+     userLogin && navigate('/');
+  }, [navigate, userLogin]);
   return (
     <>
     <Animation />

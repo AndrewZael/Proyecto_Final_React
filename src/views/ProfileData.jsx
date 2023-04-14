@@ -5,23 +5,47 @@ import HeadProfile from '../components/HeadProfile';
 import Context from '../contexts/Context';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getDatabase, set, ref as refDatabase } from "firebase/database";
+import { getAuth, updateEmail, updatePassword } from 'firebase/auth';
 import Preload from '../components/Preload';
 import openToast from '../shared/OpenToast';
 import userPlaceholder from '../assets/img/user.png';
+import AlertMessage from '../components/AlertMessage';
+import { useNavigate } from 'react-router-dom';
  
 const ProfileData = () => {
 
-   const { user, setUser, setInfoFeedBack } = useContext(Context);
+   const { user, setUser, setInfoFeedBack, setUserLogin } = useContext(Context);
    const [file, setFile] = useState('');
    const [preload, setPreload] = useState(false);
+   const [passwordsNoMatch, setPasswordsNoMatch] = useState(false);
+   const [alertPassword, setAlertPassword] = useState(false);
+   const [password, setPassword] = useState('');
+   const [passwordConfirm, setPasswordConfirm] = useState('');
 
+   const navigate = useNavigate();
    const storage = getStorage();
+   const auth = getAuth();
    const userImageRef = ref(storage, `users/${user.user_id}/${user.user_id}`);  
 
    useEffect(() => {
       file !== '' && uploadImage();
       // eslint-disable-next-line
-   }, [file]);  
+   }, [file]);
+   
+   useEffect(() => {
+        if((password !== '' || passwordConfirm !== '') && password !== passwordConfirm){
+            setPasswordsNoMatch(true);
+        }else{
+            setPasswordsNoMatch(false);
+        }
+
+        if((password !== '' && passwordConfirm !== '') && password !== passwordConfirm){
+            setAlertPassword(true);
+        }else if((password !== '' && passwordConfirm !== '') && password === passwordConfirm){
+            setAlertPassword(false);
+        }
+
+   }, [password, passwordConfirm, setPasswordsNoMatch]);
 
   const uploadImage = () => {
     setPreload(true);
@@ -70,25 +94,54 @@ const ProfileData = () => {
     reader.readAsArrayBuffer(file);
   };
 
+  const updatePass = () => {
+    if(user.provider_Id === 'password'){
+        if((password !== '' && passwordConfirm !== '') && password === passwordConfirm){
+            return updatePassword(auth.currentUser, password);
+        }
+    }else{
+        return new Promise((resolve, reject) => {
+            resolve();
+        });
+    }
+  }
+
   const updateProfile = e => {
     setPreload(true);
     e.preventDefault();
+
     if(e.currentTarget.checkValidity()){
         setUser({...user});
-        set(refDatabase(getDatabase(), `users/${user.user_id}`), user).then(() => {
+        updateEmail(auth.currentUser, user.email).then(() => {
+            updatePass().then(() => {
+                set(refDatabase(getDatabase(), `users/${user.user_id}`), user)
+                .then(() => {
+                    setPreload(false);
+                    setInfoFeedBack(openToast(
+                        'success',
+                        '¡Perfil actualizado!',
+                        'La información de tu perfil se actualizó correctamente, por favor, vuelve a iniciar sesión. '
+                    ));
+                    if(user.provider_Id === 'password'){
+                        auth.signOut().then(() => {
+                            setUserLogin(false);
+                            setUser({})
+                            navigate('/login');
+                        }).catch(error => console.log(error));
+                    }
+
+                }).catch(error => console.log(error));
+            }).catch(error => console.log(error));
+        }).catch(error => {
+            console.log(error);
             setPreload(false);
-            setInfoFeedBack(openToast(
-                'success',
-                '¡Perfil actualizado!',
-                'La información de tu perfil se actualizó correctamente.'
-            ));
-        }).catch(() => {
             setInfoFeedBack(openToast(
                 'danger',
                 '¡Ups! Lo sentimos',
                 'No hemos logrado actualizar tu perfil, por favor inténtalo nuevamente.'
             ));
         });
+
     }
   };
 
@@ -127,23 +180,39 @@ const ProfileData = () => {
             </div>
             <Form.Group>
                 <Form.Label className='small mb-1 fw-bold'>Email</Form.Label>
-                <Form.Control type='email' defaultValue={user.email} placeholder='username@gmail.com' className='py-2' disabled={user.provider_Id === 'google.com'}></Form.Control>
+                <Form.Control type='email' onKeyUp={e => user.email = e.target.value} required defaultValue={user.email} placeholder='username@gmail.com' className='py-2' disabled={user.provider_Id === 'google.com'}></Form.Control>
             </Form.Group>
 
             { user.provider_Id !== 'google.com' ?
             <div className='row mt-3'>
                 <Form.Group className='col-12 col-sm-6 mb-3 mb-sm-0'>
                     <Form.Label className='small mb-1 fw-bold'>Contraseña</Form.Label>
-                    <Form.Control type='password' placeholder='******' className='py-2'></Form.Control>
+                    <Form.Control pattern='^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$' 
+                    onKeyUp={e => setPassword(e.target.value)} type='password' placeholder='******' className='py-2'></Form.Control>
+                    <Form.Text className='text-gray text-small'>
+                        Mínimo 6 caracteres y solo debe contener números y letras.
+                    </Form.Text>
                 </Form.Group>
                 <Form.Group className='col-12 col-sm-6'>
                     <Form.Label className='small mb-1 fw-bold'>Confirmar contraseña</Form.Label>
-                    <Form.Control type='password' placeholder='******' className='py-2'></Form.Control>
+                    <Form.Control pattern='^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$' onKeyUp={e => setPasswordConfirm(e.target.value)} type='password' placeholder='******' className='py-2'></Form.Control>
+                    <Form.Text className='text-gray text-small'>
+                        Mínimo 6 caracteres y solo debe contener números y letras.
+                    </Form.Text>
                 </Form.Group>
+                <div className='col-12 mt-4'>
+                    {
+                        alertPassword ? 
+                            <AlertMessage 
+                                variant='danger' 
+                                icon='error' 
+                                text='Las contraseñas no coinciden' /> : null
+                    }
+                </div>
             </div> : null
             }
 
-            <button type='submit' className='btn btn-sm px-4 py-2 float-end btn-primary rounded-pill mt-4' title='Actualizar perfil' disabled={preload}>
+            <button type='submit' className='btn btn-sm px-4 py-2 float-end btn-primary rounded-pill mt-3' title='Actualizar perfil' disabled={preload || passwordsNoMatch}>
                 { preload ? 'Por favor espere...' : 'ACTUALIZAR PERFIL' }
             </button>
         </Form>

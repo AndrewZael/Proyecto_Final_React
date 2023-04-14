@@ -13,7 +13,7 @@ const Feedback = () => {
   return (
     <ToastContainer className="position-fixed z-1 p-3" position='bottom-center'>
         <Toast show={infoFeedBack.show} bg={infoFeedBack?.bg} animation={true} onClose={close} 
-        delay={5000} autohide>
+        delay={7000} autohide>
             <Toast.Header closeButton={true}>
                 <strong className="me-auto">{ infoFeedBack.title }</strong>
             </Toast.Header>
