@@ -79,7 +79,7 @@ const Header = () => {
       setHeaderClass('');
     }
     window.scrollTo(0,0);
-  }, [location]);
+  }, [location, setHeaderClass]);
 
   return (
     <header className={`main-header row py-3 mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 ${headerClass}`}>
