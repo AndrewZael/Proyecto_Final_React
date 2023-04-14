@@ -1,6 +1,13 @@
 # Demo
 
-[Ver demo](https://main--stirring-pothos-381a17.netlify.app/)
+[Ver demo](https://stirring-pothos-381a17.netlify.app/)
+
+## Claves
+### Login con google
+### Login con email y contraseña
+email: renny_gil@gmail.com
+contraseña: 123456a
+
 
 # Getting Started with Create React App
 
