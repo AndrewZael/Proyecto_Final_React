@@ -97,7 +97,7 @@ const Login = ({ only = false }) => {
             }
 
             <footer className='p-2 border rounded text-center mb-2 bg-white'>
-                ¿Nuevo en ******? <NavLink to='/registro' className='link'>Regístrate aquí</NavLink>
+                ¿Nuevo en <b>CommUnity</b>? <NavLink to='/registro' className='link'>Regístrate aquí</NavLink>
             </footer>
         </form>
     </section>
