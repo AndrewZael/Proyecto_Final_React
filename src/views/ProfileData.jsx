@@ -124,17 +124,23 @@ const ProfileData = () => {
                 set(refDatabase(getDatabase(), `users/${user.user_id}`), user)
                 .then(() => {
                     setPreload(false);
-                    setInfoFeedBack(openToast(
-                        'success',
-                        '¡Perfil actualizado!',
-                        'La información de tu perfil se actualizó correctamente, por favor, vuelve a iniciar sesión. '
-                    ));
                     if(user?.provider_Id === 'password' && password !== '' && passwordConfirm !== ''){
                         auth.signOut().then(() => {
                             setUserLogin(false);
                             setUser({})
                             navigate('/login');
+                            setInfoFeedBack(openToast(
+                                'success',
+                                '¡Perfil actualizado!',
+                                'La información de tu perfil se actualizó correctamente, por favor, vuelve a iniciar sesión. '
+                            ));
                         }).catch(error => console.log(error));
+                    }else{
+                        setInfoFeedBack(openToast(
+                            'success',
+                            '¡Perfil actualizado!',
+                            'La información de tu perfil se actualizó correctamente'
+                        ));
                     }
 
                 }).catch(error => console.log(error));
@@ -145,7 +151,7 @@ const ProfileData = () => {
             setInfoFeedBack(openToast(
                 'danger',
                 '¡Ups! Lo sentimos',
-                'No hemos logrado actualizar tu perfil, por favor inténtalo nuevamente.'
+                'No hemos logrado actualizar tu perfil. Por favor, cierra sesión, vuelve a ingresar e inténtalo nuevamente.'
             ));
         });
 

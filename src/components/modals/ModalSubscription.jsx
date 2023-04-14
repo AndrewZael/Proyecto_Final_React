@@ -17,14 +17,12 @@ const ModalSubscription = () => {
     userLogin,
     modalRef
   } = useContext(Context);
-  const [info, setInfo] = useState({});
   const [preload, setPreload] = useState(false);
   const [photo, setPhoto] = useState('');
   const handleClose = () => setShowModalSub(false);
 
   useEffect(() => {
     get(ref(getDatabase(), `contacts/${modalRef}`)).then(snapshot => {
-       setInfo(snapshot.val());
        setPhoto(snapshot.val().profile_picture);
     }).catch(() => {
         setPhoto(userPlaceholder);
@@ -96,9 +94,14 @@ const ModalSubscription = () => {
                         </div>
                     </div>
                 </div>
+                { userLogin ? 
                 <button onClick={continuePay} className='btn btn-primary rounded-pill px-5 py-2 mx-auto d-block'>
                     CONTINUAR
-                </button>
+                </button> : 
+                <p className='text-center'>
+                    Para continuar, por favor sigue los siguientes enlaces.
+                </p>
+                }
                 { !userLogin ? 
                 <nav className='mt-4'>
                     <ul className='list-unstyled d-flex justify-content-center gap-3'>

@@ -86,7 +86,7 @@ const Login = ({ only = false }) => {
                 errorForm ? <AlertMessage icon='error' variant='danger' text="Correo o contraseña incorrecta " /> : null
             }
 
-            <NavLink to='/login' className='btn link d-block small'>Recuperar contraseña</NavLink>
+            <NavLink className='btn link d-block small'>Recuperar contraseña</NavLink>
             <button onClick={e => LoginEmailPassword(e)} className='btn btn-auxiliar-2 rounded-pill w-100 py-2 my-2' disabled={preload}>
                 { preload ? <Preload variant='light' size='sm' /> :  'INGRESAR' }
             </button>
