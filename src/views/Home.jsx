@@ -10,13 +10,32 @@ import Benefits from '../shared/Benefits';
 import Imagotipo from '../components/Imagotipo';
 
 const Home = () => {
-  const { userLogin, publications } = useContext(Context);
+  const { 
+    userLogin, 
+    publications,
+    setHeaderClass 
+  } = useContext(Context);
   const [latestPosts, setLatestPosts] = useState([]);
 
   useEffect(() => {
      const postsHome = publications.slice(0, 3);
      setLatestPosts([...postsHome]);
   }, [publications]);
+
+  const handleScroll = () => {
+    if(window.scrollY >= 100){
+      setHeaderClass('bg-secondary border-bottom');
+    }else if(window.scrollY === 0){
+      setHeaderClass('');
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
 
   return (
     <>

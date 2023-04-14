@@ -24,6 +24,7 @@ function App() {
   const [showModalSub, setShowModalSub] = useState(false);
   const [userLogin, setUserLogin] = useState(false);
   const [user, setUser] = useState({});
+  const [headerClass, setHeaderClass] = useState('');
   const [publications, setPublications] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [infoFeedBack, setInfoFeedBack] = useState({
@@ -48,7 +49,9 @@ function App() {
     infoFeedBack,
     modalRef,
     setModalRef,
-    setInfoFeedBack
+    setInfoFeedBack,
+    headerClass,
+    setHeaderClass
   }
 
   return (

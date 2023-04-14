@@ -21,7 +21,9 @@ const Header = () => {
     setUserLogin,
     setPublications,
     setFilteredList,
-    setInfoFeedBack
+    setInfoFeedBack,
+    headerClass,
+    setHeaderClass
   } = useContext(Context);
   const location = useLocation();
 
@@ -71,11 +73,16 @@ const Header = () => {
 
   // Scroll top
   useEffect(() => {
+    if(location.pathname !== '/'){
+        setHeaderClass('bg-secondary border-bottom');
+    }else{
+      setHeaderClass('');
+    }
     window.scrollTo(0,0);
   }, [location]);
 
   return (
-    <header className={`main-header row py-3 mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 bg-secondary border-bottom`}>
+    <header className={`main-header row py-3 mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 ${headerClass}`}>
       <nav className='navigation col-6'>
         <ul className='p-0 m-0 list-unstyled d-flex align-items-center'>
             <li className='me-3 align-items-center d-none d-sm-flex'>
