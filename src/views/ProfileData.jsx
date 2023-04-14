@@ -11,6 +11,7 @@ import openToast from '../shared/OpenToast';
 import userPlaceholder from '../assets/img/user.png';
 import AlertMessage from '../components/AlertMessage';
 import { useNavigate } from 'react-router-dom';
+import Eye from '../components/Eye';
  
 const ProfileData = () => {
 
@@ -21,6 +22,8 @@ const ProfileData = () => {
    const [alertPassword, setAlertPassword] = useState(false);
    const [password, setPassword] = useState('');
    const [passwordConfirm, setPasswordConfirm] = useState('');
+   const [passwordVisible, setPasswordVisible] = useState(false);
+   const [passwordVisibleConfirm, setPassworVisibledConfirm]= useState(false);
 
    const navigate = useNavigate();
    const storage = getStorage();
@@ -187,15 +190,25 @@ const ProfileData = () => {
             <div className='row mt-3'>
                 <Form.Group className='col-12 col-sm-6 mb-3 mb-sm-0'>
                     <Form.Label className='small mb-1 fw-bold'>Contraseña</Form.Label>
-                    <Form.Control pattern='^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$' 
-                    onKeyUp={e => setPassword(e.target.value)} type='password' placeholder='******' className='py-2'></Form.Control>
+                    <div className='input-group mb-3'>
+                        <Form.Control pattern='^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$' 
+                        onKeyUp={e => setPassword(e.target.value)} type={passwordVisible ? 'text' : 'password'} placeholder='******' className='py-2 border-end-0 border'></Form.Control>
+                        <Eye 
+                            passwordVisible={passwordVisible}
+                            setPasswordVisible={setPasswordVisible} />
+                    </div>
                     <Form.Text className='text-gray text-small'>
                         Mínimo 6 caracteres y solo debe contener números y letras.
                     </Form.Text>
                 </Form.Group>
                 <Form.Group className='col-12 col-sm-6'>
                     <Form.Label className='small mb-1 fw-bold'>Confirmar contraseña</Form.Label>
-                    <Form.Control pattern='^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$' onKeyUp={e => setPasswordConfirm(e.target.value)} type='password' placeholder='******' className='py-2'></Form.Control>
+                    <div className='input-group mb-3'>
+                        <Form.Control pattern='^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$' onKeyUp={e => setPasswordConfirm(e.target.value)} type={passwordVisibleConfirm ? 'text' : 'password'} placeholder='******' className='py-2 border-end-0 border'></Form.Control>
+                        <Eye 
+                            passwordVisible={passwordVisibleConfirm}
+                            setPasswordVisible={setPassworVisibledConfirm} />
+                    </div>
                     <Form.Text className='text-gray text-small'>
                         Mínimo 6 caracteres y solo debe contener números y letras.
                     </Form.Text>

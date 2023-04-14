@@ -5,6 +5,7 @@ import { getDatabase, set, ref, } from 'firebase/database';
 import userObj from '../shared/User';
 import Context from '../contexts/Context';
 import openToast from '../shared/OpenToast';
+import Eye from './Eye';
 
 const Register = ({ only }) => {
 
@@ -12,6 +13,7 @@ const Register = ({ only }) => {
   const auth = getAuth();  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const { setUser, setInfoFeedBack } = useContext(Context);
 
   const registerUser = async e => {
@@ -43,8 +45,11 @@ const Register = ({ only }) => {
             </div>
             <label htmlFor='password' className='mb-1 small'>Contraseña</label>
             <div className="input-group mb-3">
-                <input type='password' onKeyUp={e => setPassword(e.target.value)} id='password' className="form-control border w-100" placeholder="*********" aria-label="Contraseña" autoComplete='current-password' 
+                <input type={passwordVisible ? 'text' : 'password'} onKeyUp={e => setPassword(e.target.value)} id='password' className="form-control border border-end-0" placeholder="*********" aria-label="Contraseña" autoComplete='current-password' 
                 pattern='^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$' required />
+                <Eye 
+                    passwordVisible={passwordVisible} 
+                    setPasswordVisible={setPasswordVisible}  />
                 <small className='text-gray text-small d-block mt-1'>Mínimo 6 caracteres y solo debe contener números y letras.</small>
             </div>
 

@@ -9,6 +9,7 @@ import userObj from '../shared/User';
 import AlertMessage from './AlertMessage';
 import Preload from './Preload';
 import GoogleButton from './GoogleButton';
+import Eye from './Eye';
 
 const Login = ({ only = false }) => {
   
@@ -18,6 +19,7 @@ const Login = ({ only = false }) => {
   const [preload, setPreload] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const auth = getAuth();
 
@@ -73,8 +75,11 @@ const Login = ({ only = false }) => {
                 onKeyUp={e => setUserEmail(e.target.value)} />
             </div>
             <label htmlFor='password' className='mb-1 small'>Contraseña</label>
-            <div className="input-group mb-3 flex-column">
-                <input type='password' id='password' className="form-control border w-100" placeholder="*********" aria-label="Contraseña" autoComplete='current-password' required pattern='[a-zA-Z0-9]{6,}' onKeyUp={e => setUserPassword(e.target.value)} />
+            <div className="input-group mb-3">
+                <input type={passwordVisible ? 'text' : 'password'} id='password' className="form-control border border-end-0" placeholder="*********" aria-label="Contraseña" autoComplete='current-password' required pattern='[a-zA-Z0-9]{6,}' onKeyUp={e => setUserPassword(e.target.value)} />
+                <Eye 
+                    passwordVisible={passwordVisible} 
+                    setPasswordVisible={setPasswordVisible}  />
             </div>
 
             {
