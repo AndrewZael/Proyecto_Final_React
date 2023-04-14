@@ -101,7 +101,7 @@ const Header = () => {
         </nav>
         :
         <div className='col-6 d-flex text-light justify-content-end align-items-center'>
-          <small className='d-none d-sm-inline'>¡Hola! <b>{ user.username }</b></small>
+          <small className='d-none d-sm-inline'>¡Hola! <b>{ user?.username }</b></small>
           <Dropdown>
             <Dropdown.Toggle variant="none" className='text-light'>
               <span className="material-icons-outlined">manage_accounts</span>

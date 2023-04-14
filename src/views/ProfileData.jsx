@@ -28,7 +28,7 @@ const ProfileData = () => {
    const navigate = useNavigate();
    const storage = getStorage();
    const auth = getAuth();
-   const userImageRef = ref(storage, `users/${user.user_id}/${user.user_id}`);  
+   const userImageRef = ref(storage, `users/${user?.user_id}/${user?.user_id}`);  
 
    useEffect(() => {
       file !== '' && uploadImage();
@@ -73,7 +73,7 @@ const ProfileData = () => {
     getDownloadURL(ref(storage, `users/${user.user_id}/${user.user_id}`)).then(img => {
         user.profile_picture = img;
         setUser({...user});
-        set(refDatabase(getDatabase(), `users/${user.user_id}/profile_picture`), user.profile_picture);
+        set(refDatabase(getDatabase(), `users/${user.user_id}/profile_picture`), user?.profile_picture);
         setPreload(false);
         setFile('');
     }).catch(error => {
@@ -98,9 +98,13 @@ const ProfileData = () => {
   };
 
   const updatePass = () => {
-    if(user.provider_Id === 'password'){
+    if(user?.provider_Id === 'password'){
         if((password !== '' && passwordConfirm !== '') && password === passwordConfirm){
             return updatePassword(auth.currentUser, password);
+        }else{
+            return new Promise((resolve, reject) => {
+                resolve();
+            })
         }
     }else{
         return new Promise((resolve, reject) => {
@@ -125,7 +129,7 @@ const ProfileData = () => {
                         '¡Perfil actualizado!',
                         'La información de tu perfil se actualizó correctamente, por favor, vuelve a iniciar sesión. '
                     ));
-                    if(user.provider_Id === 'password'){
+                    if(user?.provider_Id === 'password' && password !== '' && passwordConfirm !== ''){
                         auth.signOut().then(() => {
                             setUserLogin(false);
                             setUser({})
@@ -155,8 +159,8 @@ const ProfileData = () => {
             <div className='photo-profile text-center mb-4 pb-4 border-bottom flex-column d-flex align-items-center'>
                 <label htmlFor='file' className='col-12 fw-bold mb-1 text-dark pointer-event-none'>Foto de perfil</label>
                 <span className='bg bg-secondary position-relative rounded-circle d-inline-block' style={{ backgroundImage: `url(${
-                    [undefined, null, ''].includes(user.profile_picture) ? 
-                        userPlaceholder : user.profile_picture
+                    [undefined, null, ''].includes(user?.profile_picture) ? 
+                        userPlaceholder : user?.profile_picture
                 })` }}>
                     { !preload ?
                         <button onClick={() => getFile()} title='Foto de perfil' type='button' className='btn btn-sm btn-light rounded-circle position-absolute shadow-sm border-soft'>
@@ -169,28 +173,28 @@ const ProfileData = () => {
 
             <Form.Group>
                 <Form.Label className='small mb-1 fw-bold'>Nombre de usuario</Form.Label>
-                <Form.Control defaultValue={user.username} onKeyUp={e => user.username = e.target.value} placeholder='Nombre de usuario' className='py-2' required></Form.Control>
+                <Form.Control defaultValue={user?.username} onKeyUp={e => user.username = e.target.value} placeholder='Nombre de usuario' className='py-2' required></Form.Control>
             </Form.Group>
             <div className='row my-3'>
                 <Form.Group className='col-12 col-sm-6 mb-3 mb-sm-0'>
                     <Form.Label className='small mb-1 fw-bold'>Nombre</Form.Label>
-                    <Form.Control defaultValue={user.name} onKeyUp={e => user.name = e.target.value} placeholder='Primer nombre' className='py-2'></Form.Control>
+                    <Form.Control defaultValue={user?.name} onKeyUp={e => user.name = e.target.value} placeholder='Primer nombre' className='py-2'></Form.Control>
                 </Form.Group>
                 <Form.Group className='col-12 col-sm-6 '>
                     <Form.Label className='small mb-1 fw-bold'>Apellido</Form.Label>
-                    <Form.Control defaultValue={user.lastname} onKeyUp={e => user.lastname = e.target.value} placeholder='Primer apellido' className='py-2'></Form.Control>
+                    <Form.Control defaultValue={user?.lastname} onKeyUp={e => user.lastname = e.target.value} placeholder='Primer apellido' className='py-2'></Form.Control>
                 </Form.Group>
             </div>
             <Form.Group>
                 <Form.Label className='small mb-1 fw-bold'>Email</Form.Label>
-                <Form.Control type='email' onKeyUp={e => user.email = e.target.value} required defaultValue={user.email} placeholder='username@gmail.com' className='py-2' disabled={user.provider_Id === 'google.com'}></Form.Control>
+                <Form.Control type='email' onKeyUp={e => user.email = e.target.value} required defaultValue={user?.email} placeholder='username@gmail.com' className='py-2' disabled={user?.provider_Id === 'google.com'}></Form.Control>
             </Form.Group>
 
-            { user.provider_Id !== 'google.com' ?
+            { user?.provider_Id !== 'google.com' ?
             <div className='row mt-3'>
                 <Form.Group className='col-12 col-sm-6 mb-3 mb-sm-0'>
                     <Form.Label className='small mb-1 fw-bold'>Contraseña</Form.Label>
-                    <div className='input-group mb-3'>
+                    <div className='input-group'>
                         <Form.Control pattern='^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$' 
                         onKeyUp={e => setPassword(e.target.value)} type={passwordVisible ? 'text' : 'password'} placeholder='******' className='py-2 border-end-0 border'></Form.Control>
                         <Eye 
@@ -203,7 +207,7 @@ const ProfileData = () => {
                 </Form.Group>
                 <Form.Group className='col-12 col-sm-6'>
                     <Form.Label className='small mb-1 fw-bold'>Confirmar contraseña</Form.Label>
-                    <div className='input-group mb-3'>
+                    <div className='input-group'>
                         <Form.Control pattern='^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$' onKeyUp={e => setPasswordConfirm(e.target.value)} type={passwordVisibleConfirm ? 'text' : 'password'} placeholder='******' className='py-2 border-end-0 border'></Form.Control>
                         <Eye 
                             passwordVisible={passwordVisibleConfirm}

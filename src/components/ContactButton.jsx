@@ -9,7 +9,7 @@ const ContactButton = ({ obj, className = 'w-100' }) => {
         setModalRef } =  useContext(Context);
     const openModal = () => {
         setModalRef(`${obj.user_id}/${obj.publication_id}`);
-        if(user.subscribed){
+        if((user.subscribed) || obj.user_id === user.user_id){
             setShowModalContact(true);
         }else{
             setShowModalSub(true);

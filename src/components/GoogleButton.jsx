@@ -15,8 +15,9 @@ const GoogleButton = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider).then((result) => {
             const user = result.user;
+            console.log(user);
             getUserData(user).then(userData => {
-                if(userData.user_id === user.uid){
+                if(userData?.user_id === user.uid){
                     console.log('usuario existe');
                     setUser(userData);
                 }else{
@@ -26,8 +27,8 @@ const GoogleButton = () => {
                 }
                 setUserLogin(true);
                 navigate('/');             
-            }).catch(() => {
-                
+            }).catch(error => {
+                console.log(error);
             });
 
         }).catch(err => {

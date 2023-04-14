@@ -92,12 +92,14 @@ const ProfileNewPost = () => {
       set(ref(db, `publications/${idRef}`), publication),
       set(ref(db, `contacts/${user.user_id}/${idRef}`), contact)
     ]).then(() => {
+      e.target.reset();
       setInfoFeedBack(openToast(
         'success',
         '¡Publicación creada con éxito!',
         'Tu publicación ha sido creada exitosamente.'
       ));
     }).catch(() => {
+      e.reset();
       setInfoFeedBack(openToast(
         'danger',
         '¡Ups! Lo sentimos',
@@ -164,7 +166,7 @@ const ProfileNewPost = () => {
             <Form.Group className='mb-4'>
                 <Form.Label htmlFor='cite' className='small mb-1 fw-bold text-dark'>Descríbete en una frase</Form.Label>
                 <textarea onKeyUp={e => publication.cite = e.target.value} 
-                onChange={e => setCiteLength(e.target.value.length)} id='cite' placeholder='Lorem ipsum dolor sit amet' rows={1} maxLength={80} className='py-2 form-control' required></textarea>
+                onChange={e => setCiteLength(e.target.value.length)} id='cite' placeholder='Maestro del universo digital...' rows={1} maxLength={80} className='py-2 form-control' required></textarea>
                 <Form.Text className='text-gray text-small'>Cantidad máxima de caracteres {citeLength} / 80</Form.Text>
             </Form.Group>
 
@@ -200,14 +202,14 @@ const ProfileNewPost = () => {
 
             <Form.Group className='mb-4'>
               <Form.Label htmlFor='about-you' className='small mb-1 fw-bold text-dark'>En pocas palabras cuéntanos un poco de ti</Form.Label>
-              <textarea onKeyUp={e => publication.about_you = e.target.value} onChange={e => setAboutYouLength(e.target.value.length)} id='about-you' className='form-control' maxLength={140} rows={4} required placeholder='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.'></textarea>
+              <textarea onKeyUp={e => publication.about_you = e.target.value} onChange={e => setAboutYouLength(e.target.value.length)} id='about-you' className='form-control' maxLength={140} rows={4} required placeholder='Como profesional digital, poseo habilidades en marketing, diseño y tecnología, lo que me permite trabajar en...'></textarea>
               <Form.Text className='text-gray text-small'>Cantidad máxima de caracteres {aboutYouLength} / 140</Form.Text>
             </Form.Group>
 
             <Form.Group className='mb-4'>
               <Form.Label htmlFor='experience' className='small mb-1 fw-bold text-dark'>Cuéntanos sobre tus experiencias y habilidades</Form.Label>
-              <textarea onKeyUp={e => publication.experience = e.target.value} onChange={e => setExperienceLength(e.target.value.length)} id='experience' className='form-control' required maxLength={300} rows={5} placeholder='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in .'></textarea>
-              <Form.Text className='text-gray text-small'>Cantidad máxima de caracteres {experienceLength} / 300</Form.Text>
+              <textarea onKeyUp={e => publication.experience = e.target.value} onChange={e => setExperienceLength(e.target.value.length)} id='experience' className='form-control' required maxLength={400} rows={5} placeholder='Tengo experiencia en el desarrollo de estrategias de marketing digital, la creación de contenido y el diseño de sitios web. También he trabajado en campañas de publicidad en línea, análisis de datos y optimización de motores de búsqueda...'></textarea>
+              <Form.Text className='text-gray text-small'>Cantidad máxima de caracteres {experienceLength} / 400</Form.Text>
             </Form.Group>
 
             <Form.Group className='w-100 mb-4'>

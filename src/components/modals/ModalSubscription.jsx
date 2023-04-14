@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { useState } from 'react';
+import React, { useContext,useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
 import Context from '../../contexts/Context';
 import Preload from '../Preload';
 import openToast from '../../shared/OpenToast';
-import { getDatabase, ref, set } from 'firebase/database';
+import { getDatabase, get, ref, set } from 'firebase/database';
+import userPlaceholder from '../../assets/img/user.png';
 
 const ModalSubscription = () => {
   const { 
@@ -13,10 +13,27 @@ const ModalSubscription = () => {
     setShowModalSub,
     setShowModalContact,
     setInfoFeedBack,
-    user
+    user,
+    userLogin,
+    modalRef
   } = useContext(Context);
+  const [info, setInfo] = useState({});
   const [preload, setPreload] = useState(false);
+  const [photo, setPhoto] = useState('');
   const handleClose = () => setShowModalSub(false);
+
+  useEffect(() => {
+    get(ref(getDatabase(), `contacts/${modalRef}`)).then(snapshot => {
+       setInfo(snapshot.val());
+       setPhoto(snapshot.val().profile_picture);
+    }).catch(() => {
+        setPhoto(userPlaceholder);
+    });
+    }, [modalRef]);
+
+  useEffect(() => {
+    
+  }, []);
 
   const continuePay = () => {
     setPreload(true);
@@ -28,12 +45,11 @@ const ModalSubscription = () => {
             setInfoFeedBack(openToast(
                 'success',
                 '¡Pago realizado con éxito!',
-                'Tu pago ha sido confirmado, ya puedes disfrutar de **** PRO'
+                'Tu pago ha sido confirmado, ya puedes disfrutar de CommUnity PRO'
             ));
         }).catch(() => {
 
         });
-        
     },3000);
   }
 
@@ -43,9 +59,9 @@ const ModalSubscription = () => {
             !preload ? 
             <Modal.Header className='d-flex align-items-start border-0 pb-0' closeButton>
                 <header className='d-flex flex-column align-items-center w-100 pt-4'>
-                    <b>Suscríbete a **** PRO</b>
+                    <b>Suscríbete a CommUnity PRO</b>
                     <span className='p-5 bg bg-secondary rounded-circle mb-2 mt-4'
-                    style={{ backgroundImage: `url(${''})` }}></span>
+                    style={{ backgroundImage: `url(${photo})` }}></span>
                     <p className='mb-0 text-center'>
                     Contactar con todos <br />nuestros profesionales.
                     </p>
@@ -83,13 +99,15 @@ const ModalSubscription = () => {
                 <button onClick={continuePay} className='btn btn-primary rounded-pill px-5 py-2 mx-auto d-block'>
                     CONTINUAR
                 </button>
+                { !userLogin ? 
                 <nav className='mt-4'>
                     <ul className='list-unstyled d-flex justify-content-center gap-3'>
                         <li><Link to='/registro' onClick={() => setShowModalSub(false)}>Regístrate</Link></li>
                         <span className='text-gray'>|</span>
                         <li><Link to='/login' onClick={() => setShowModalSub(false)}>Ingresa</Link></li>
                     </ul>
-                </nav>
+                </nav> : null
+                }
                 </> : 
                 <div className='py-5'>
                     <Preload 
