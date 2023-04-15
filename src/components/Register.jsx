@@ -50,7 +50,7 @@ const Register = ({ only }) => {
                 <Eye 
                     passwordVisible={passwordVisible} 
                     setPasswordVisible={setPasswordVisible}  />
-                <small className='text-gray text-small d-block mt-1'>Mínimo 6 caracteres y solo debe contener números y letras.</small>
+                <small className='text-gray text-small d-block mt-1 w-100'>Mínimo 6 caracteres y solo debe contener números y letras.</small>
             </div>
 
             <button className='btn btn-auxiliar-2 rounded-pill w-100 py-2 my-2'>

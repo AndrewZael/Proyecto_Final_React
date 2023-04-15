@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import ItemMenu from './ItemMenu';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { useContext } from 'react';
 import Context from '../contexts/Context';
 import { getAuth } from 'firebase/auth';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import openToast from '../shared/OpenToast';
 import isotipo from '../assets/img/isotipo.svg';
+import Icon from './Icon';
 
 const Header = () => {
 
+  const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
   const auth = getAuth();
   const db = getDatabase();
@@ -81,18 +82,27 @@ const Header = () => {
     window.scrollTo(0,0);
   }, [location, setHeaderClass]);
 
+  // Cierra menú si se cambia de location
+  useEffect(() => {
+    setShowMenu(false);
+  }, [location]);
+
   return (
     <header className={`main-header row py-3 mx-0 justify-content-between align-items-center border-auxiliar position-sticky top-0 start-0 ${headerClass}`}>
       <nav className='navigation col-6'>
         <ul className='p-0 m-0 list-unstyled d-flex align-items-center'>
-            <li className='me-3 align-items-center d-none d-sm-flex'>
+            <li className={`me-3 align-items-center d-sm-flex ${!userLogin && window.innerWidth < 450 ? 'd-none' : ''}`}>
               <Link to='/' className='not-menu'>
-                  <img src={isotipo} alt='Community' width={60} />
+                  <img src={isotipo} alt='Community' width={48} />
               </Link>
             </li>
-            <li><NavLink to='/' className='text-decoration-none text-light d-inline-block me-3 small'>
-                HOME
-                </NavLink>
+            <li>
+              <NavLink to='/' className='text-decoration-none text-light d-inline-block me-3 small'>
+                <span className='d-none d-sm-inline'>HOME</span>
+                <span className='d-sm-none'>
+                  <Icon icon='home' color='light' />
+                </span>
+              </NavLink>
             </li>
             <li><NavLink to='/publicaciones' className='text-decoration-none text-light d-inline-block small'>
                 PUBLICACIONES
@@ -109,11 +119,15 @@ const Header = () => {
         :
         <div className='col-6 d-flex text-light justify-content-end align-items-center'>
           <small className='d-none d-sm-inline'>¡Hola! <b>{ user?.username }</b></small>
-          <Dropdown>
-            <Dropdown.Toggle variant="none" className='text-light'>
+          <Dropdown show={showMenu}>
+            <Dropdown.Toggle onClick={() => setShowMenu(true)} variant="none" className='text-light'>
               <span className="material-icons-outlined">manage_accounts</span>
             </Dropdown.Toggle>
             <Dropdown.Menu>
+              <header className='px-3 pb-2 border-bottom d-sm-none'>
+                 <small className='d-block'>¡Hola!</small>
+                 <b>{ user?.username }</b>
+              </header>
               <ItemMenu label="Mi perfil" icon="person" to='perfil/mis-datos' />
               <ItemMenu label="Mis favoritos" icon="favorite" to='perfil/favoritos' />
               <ItemMenu label="Mis publicaciones" icon="article" to='perfil/mis-publicaciones' />
