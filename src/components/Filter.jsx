@@ -94,7 +94,7 @@ const Filter = ({ styles = '' }) => {
         {
             btnClear ? 
             <header className='d-flex justify-content-end mb-3'>
-                <button type='button' onClick={clearFilter} className='d-flex btn btn-outline-auxiliar'>
+                <button type='button' onClick={clearFilter} className='d-flex btn btn-outline-auxiliar p-1'>
                     <Icon icon='filter_alt_off' />
                     <span className='ms-2 small'>Limpiar filtro</span>
                 </button>

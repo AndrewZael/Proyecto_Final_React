@@ -13,7 +13,7 @@ const Search = () => {
     const val = e.target.value;
     const newList = publications.filter(p => 
         (
-            p ? JSON.stringify(p).normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(val) : 
+            p ? JSON.stringify(p).normalize("NFD").replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(val.toLowerCase()) : 
             publications
         )
     );
