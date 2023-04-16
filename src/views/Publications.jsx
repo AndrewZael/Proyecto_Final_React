@@ -12,8 +12,8 @@ const Publications = () => {
   return (
     <main className='row mx-0'>
        <HeadPage title='Publicaciones' subtitle='Descubre todas las publicaciones y novedades.' />
-       <Filters styles='col-12 col-sm-4 col-md-4 col-lg-3 col-xl-2' />
-       <section className='col-12 col-sm-8 col-md-8 col-lg-9 col-xl-10 pb-5 row mx-0 pt-5 mt-4' title='Publicaciones'>
+       <Filters styles='col-12 col-sm-4 col-md-4 col-xl-3 col-xxl-2' />
+       <section className='col-12 col-sm-8 col-md-8 col-xl-9 col-xxl-10 pb-5 row mx-0 pt-5 mt-4' title='Publicaciones'>
             { filteredList.length === 0 ? 
               <Message img={imgVoid} 
               title='Sin resultados.' 

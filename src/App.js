@@ -16,12 +16,14 @@ import ModalInfoContact from './components/modals/ModalInfoContact';
 import Feedback from './components/Feedback';
 import ModalSubscription from './components/modals/ModalSubscription';
 import NotFound from './views/NotFound';
+import ModalFilters from './components/modals/ModalFilters';
 
 function App() {
 
   const [showModalContact, setShowModalContact] = useState(false);
-  const [modalRef, setModalRef] = useState('');
   const [showModalSub, setShowModalSub] = useState(false);
+  const [showModalFilters, setShowModalFilters] = useState(false);
+  const [modalRef, setModalRef] = useState('');
   const [userLogin, setUserLogin] = useState(false);
   const [user, setUser] = useState({});
   const [headerClass, setHeaderClass] = useState('');
@@ -38,6 +40,8 @@ function App() {
     setShowModalContact,
     showModalSub,
     setShowModalSub,
+    showModalFilters,
+    setShowModalFilters,
     user,
     setUser,
     userLogin,
@@ -59,6 +63,7 @@ function App() {
       <Context.Provider value={share}>
         <Feedback />
         <ModalInfoContact />
+        <ModalFilters />
         <BrowserRouter>
             <ModalSubscription />
             <Header />

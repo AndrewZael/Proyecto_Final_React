@@ -120,7 +120,7 @@ const Header = () => {
         <div className='col-6 d-flex text-light justify-content-end align-items-center'>
           <small className='d-none d-sm-inline'>¡Hola! <b>{ user?.username }</b></small>
           <Dropdown show={showMenu}>
-            <Dropdown.Toggle onClick={() => setShowMenu(true)} variant="none" className='text-light'>
+            <Dropdown.Toggle onClick={() => setShowMenu(!showMenu)} variant="none" className='text-light'>
               <span className="material-icons-outlined">manage_accounts</span>
             </Dropdown.Toggle>
             <Dropdown.Menu>

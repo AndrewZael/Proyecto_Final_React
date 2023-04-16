@@ -32,7 +32,7 @@ const Sort = () => {
     <>
         <label htmlFor='sort' className='mb-1 small'>Ordenar</label>
 
-        <div className="input-group mb-3">
+        <div className="input-group mb-sm-3">
             <div className="input-group-prepend border-start border-top border-bottom rounded-start p-2 bg-white">
                 <Icon icon='filter_list' color='dark' />
             </div>
